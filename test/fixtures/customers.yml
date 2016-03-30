@@ -3,7 +3,51 @@
 one:
   razao: MyString
   iss: MyString
+  cnpj: MyString
+  cei: MyString
+  cgf: MyString
+  cod: MyString
+  logradouro: MyString
+  numero: MyString
+  bairro: MyString
+  complemento: MyString
+  municipio: MyString
+  estado: MyString
+  telefone: MyString
+  telefone2: MyString
+  telefone3: MyString
+  celular: MyString
+  celular2: MyString
+  email: MyString
+  email2: MyString
+  contato: MyString
+  contato2: MyString
+  endereco_coleta: MyString
+  honorarios: 1.5
+  desde: 2016-03-30 00:59:19
 
 two:
   razao: MyString
   iss: MyString
+  cnpj: MyString
+  cei: MyString
+  cgf: MyString
+  cod: MyString
+  logradouro: MyString
+  numero: MyString
+  bairro: MyString
+  complemento: MyString
+  municipio: MyString
+  estado: MyString
+  telefone: MyString
+  telefone2: MyString
+  telefone3: MyString
+  celular: MyString
+  celular2: MyString
+  email: MyString
+  email2: MyString
+  contato: MyString
+  contato2: MyString
+  endereco_coleta: MyString
+  honorarios: 1.5
+  desde: 2016-03-30 00:59:19

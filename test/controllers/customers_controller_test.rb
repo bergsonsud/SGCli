@@ -18,7 +18,7 @@ class CustomersControllerTest < ActionController::TestCase
 
   test "should create customer" do
     assert_difference('Customer.count') do
-      post :create, customer: { iss: @customer.iss, razao: @customer.razao }
+      post :create, customer: { bairro: @customer.bairro, cei: @customer.cei, celular2: @customer.celular2, celular: @customer.celular, cgf: @customer.cgf, cnpj: @customer.cnpj, cod: @customer.cod, complemento: @customer.complemento, contato2: @customer.contato2, contato: @customer.contato, desde: @customer.desde, email2: @customer.email2, email: @customer.email, endereco_coleta: @customer.endereco_coleta, estado: @customer.estado, honorarios: @customer.honorarios, iss: @customer.iss, logradouro: @customer.logradouro, municipio: @customer.municipio, numero: @customer.numero, razao: @customer.razao, telefone2: @customer.telefone2, telefone3: @customer.telefone3, telefone: @customer.telefone }
     end
 
     assert_redirected_to customer_path(assigns(:customer))
@@ -35,7 +35,7 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should update customer" do
-    patch :update, id: @customer, customer: { iss: @customer.iss, razao: @customer.razao }
+    patch :update, id: @customer, customer: { bairro: @customer.bairro, cei: @customer.cei, celular2: @customer.celular2, celular: @customer.celular, cgf: @customer.cgf, cnpj: @customer.cnpj, cod: @customer.cod, complemento: @customer.complemento, contato2: @customer.contato2, contato: @customer.contato, desde: @customer.desde, email2: @customer.email2, email: @customer.email, endereco_coleta: @customer.endereco_coleta, estado: @customer.estado, honorarios: @customer.honorarios, iss: @customer.iss, logradouro: @customer.logradouro, municipio: @customer.municipio, numero: @customer.numero, razao: @customer.razao, telefone2: @customer.telefone2, telefone3: @customer.telefone3, telefone: @customer.telefone }
     assert_redirected_to customer_path(assigns(:customer))
   end
 

@@ -4,7 +4,14 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @search = Customer.order(:razao).search(params[:q])
+    type_search = params[:type_search]
+    search = params[:search]
+
+    @search = Customer.all
+    @search = @search.where('id = (?)',search).all if type_search == 'id'
+    @search = @search.where("razao like ?", "%"+search+"%").all if type_search == 'razao'
+
+    @search = @search.order(:razao).search(params[:q])
     @customers = @search.result
   end
 
@@ -70,6 +77,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:razao, :iss)
+      params.require(:customer).permit(:razao, :iss, :cnpj, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde)
     end
 end
