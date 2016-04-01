@@ -7,8 +7,10 @@ class CustomersController < ApplicationController
     type_search = params[:type_search]
     search = params[:search]
 
+    where_conditions = {params[:type_search]: params[:search]}
+
     @search = Customer.all
-    @search = @search.where('id = (?)',search).all if type_search == 'id'
+    @search = @search.where(where_conditions) if type_search != 'razao'
     @search = @search.where("razao like ?", "%"+search+"%").all if type_search == 'razao'
 
     @search = @search.order(:razao).search(params[:q])
