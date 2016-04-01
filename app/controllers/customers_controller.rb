@@ -6,15 +6,20 @@ class CustomersController < ApplicationController
   def index
     type_search = params[:type_search]
     search = params[:search]
+    params[:pagination] = Customer.per_page
 
-    where_conditions = {params[:type_search]: params[:search]}
+    @per_page = params[:per_page] || Customer.per_page || 5
+    @per_page = Customer.all.count if params[:per_page] == 'Todos'
+    #where_conditions = {params[:type_search]: params[:search]}
 
     @search = Customer.all
-    @search = @search.where(where_conditions) if type_search != 'razao'
-    @search = @search.where("razao like ?", "%"+search+"%").all if type_search == 'razao'
+    #@search = @search.where(where_conditions) if type_search != 'razao'
+    @search = @search.where("razao like ?", "%"+search+"%") if type_search == 'razao'
 
     @search = @search.order(:razao).search(params[:q])
-    @customers = @search.result
+    @customers = @search.result.paginate( :per_page => @per_page, :page => params[:page])
+    @total = @customers.count
+    @ppage = @per_page
   end
 
   # GET /customers/1

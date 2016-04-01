@@ -1,3 +1,5 @@
+<%= link_to 'New Customer', new_customer_path %>
+
 <%= form_tag(customers_path, :method => "get", id: "search-form", class: "navbar-form") do %>
       <div class="input-group">
         <%= text_field_tag :search, params[:search], placeholder: "Busca", class: "form-control" %>
@@ -92,4 +94,19 @@
 
 <br>
 
-<%= link_to 'New Customer', new_customer_path %>
+
+<div class="row">
+  <div class="col-md-1">
+    <%= select_tag :per_page, options_for_select([params[:pagination].to_i,params[:pagination].to_i*2,params[:pagination].to_i*5,250,'Todos'], params[:per_page].to_i),
+       :onchange => "if(this.value){window.location='?per_page='+this.value;}" ,:class=>"form-control input-sm position-to-pagination"%>
+  </div>
+  <div class="col-md-6">       
+    <%= will_paginate @customers, renderer: BootstrapPagination::Rails %>
+  </div>
+         
+  <div class="total position-to-pagination">
+    <b>Total: </b>(<%= @total %>)
+    <b> - Paginação: </b>(<%= @ppage %>)
+  </div>
+</div>    
+
