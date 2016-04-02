@@ -5,15 +5,33 @@
         <%= text_field_tag :search, params[:search], placeholder: "Busca", class: "form-control" %>
               <br>
 
-              <%= radio_button_tag(:type_search, "id") %>
+              <%= select_tag "type_search", options_for_select([
+                ['Código', 'id'],
+                ['Razão', 'razao'],
+                ['ISS', 'iss'],
+                ['CNPJ', 'cnpj'],
+                ['CEI', 'cei'],
+                ['CGF', 'cgf'],
+                ['Código Acesso', 'cod']
+                ], selected: params[:type_search]) %>
+<!-- 
+              <%= radio_button_tag(:type_search, "id",checked:"true") %>
               <%= label_tag(:id, "Código") %>
 
-              <%= radio_button_tag(:type_search, "razao") %>
+              <% if params[:type_search] == 'razao' %>
+                <%= radio_button_tag(:type_search, "razao",checked:"true") %>
+              <% else %>
+                <%= radio_button_tag(:type_search, "razao") %>
+              <% end %>
               <%= label_tag(:razao, "Razão") %>
 
-              <%= radio_button_tag(:type_search, "cnpj") %>
+              <% if params[:type_search] == 'cnpj' %>
+                <%= radio_button_tag(:type_search, "cnpj",checked:"true") %>
+              <% else %>
+                <%= radio_button_tag(:type_search, "cnpj") %>
+              <% end %>
               <%= label_tag(:cnpj, "CNPJ") %>
-
+ -->
         <span class="input-group-btn">
           <%= submit_tag "Procurar", class: "btn btn-default" %>
         </span>

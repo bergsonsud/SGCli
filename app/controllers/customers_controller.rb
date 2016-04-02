@@ -4,16 +4,19 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
+    
     type_search = params[:type_search]
     search = params[:search]
     params[:pagination] = Customer.per_page
 
     @per_page = params[:per_page] || Customer.per_page || 5
     @per_page = Customer.all.count if params[:per_page] == 'Todos'
-    #where_conditions = {params[:type_search]: params[:search]}
-
-    @search = Customer.all
-    #@search = @search.where(where_conditions) if type_search != 'razao'
+    
+    
+    @search = Customer.all    
+    if type_search != 'razao' && type_search.present?
+      @search = @search.where(type_search+' =?',search).all 
+    end
     @search = @search.where("razao like ?", "%"+search+"%") if type_search == 'razao'
 
     @search = @search.order(:razao).search(params[:q])

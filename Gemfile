@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+#gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -29,6 +29,8 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem 'ransack'
 
+gem 'jquery-rails', '~> 2.3.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -37,6 +39,10 @@ gem 'ransack'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :assets do
+  gem 'jquery-ui-rails'
+end	
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
