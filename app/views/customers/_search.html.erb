@@ -1,0 +1,20 @@
+<%= form_tag(customers_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], placeholder: "Busca", class: "form-control" %>
+              <br>
+
+              <%= select_tag "type_search", options_for_select([
+                ['Código', 'id'],
+                ['Razão', 'razao'],
+                ['ISS', 'iss'],
+                ['CNPJ', 'cnpj'],
+                ['CEI', 'cei'],
+                ['CGF', 'cgf'],
+                ['Código Acesso', 'cod']
+                ], selected: params[:type_search]) %>
+
+        <span class="input-group-btn">
+          <%= submit_tag "Procurar", class: "btn btn-default" %>
+        </span>
+      </div>
+      <% end %>

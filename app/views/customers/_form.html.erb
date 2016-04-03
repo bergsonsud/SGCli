@@ -103,10 +103,14 @@
     <%= f.label :honorarios %><br>
     <%= f.text_field :honorarios %>
   </div>
+
   <div class="field">
     <%= f.label :desde %><br>
-    <%= text_field_tag 'customer[desde]'%>
-    
+    <% if @customer.new_record? %>  
+      <%= text_field 'customer',:desde,:value => Time.now.strftime("%d/%m/%Y") %>
+    <% else %>     
+      <%= text_field 'customer',:desde,:value => @customer.desde.strftime("%d/%m/%Y") %>
+    <% end %>  
   </div>
   <div class="actions">
     <%= f.submit %>
