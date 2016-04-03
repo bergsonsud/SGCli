@@ -1,20 +1,26 @@
 <%= form_tag(customers_path, :method => "get", id: "search-form", class: "navbar-form") do %>
-      <div class="input-group">
-        <%= text_field_tag :search, params[:search], placeholder: "Busca", class: "form-control" %>
-              <br>
+  <div class="input-group">
+      <%= select_tag "type_search", options_for_select([
+        ['Código', 'id'],
+        ['Razão', 'razao'],
+        ['ISS', 'iss'],
+        ['CNPJ', 'cnpj'],
+        ['CEI', 'cei'],
+        ['CGF', 'cgf'],
+        ['Código Acesso', 'cod']],
+      selected: params[:type_search]),class: "form-control" %>
+      <span class="input-group-btn">
+        <%= text_field_tag :search, params[:search], placeholder: "Busca", class: "form-control",autocomplete: "off" %>          
+        <%= button_tag(type: 'submit', class: "btn btn-primary",value: 'buscar') do %>
+        <span class="glyphicon glyphicon-search"></span>
+      </span>
+      <% end %>    
+  </div>
 
-              <%= select_tag "type_search", options_for_select([
-                ['Código', 'id'],
-                ['Razão', 'razao'],
-                ['ISS', 'iss'],
-                ['CNPJ', 'cnpj'],
-                ['CEI', 'cei'],
-                ['CGF', 'cgf'],
-                ['Código Acesso', 'cod']
-                ], selected: params[:type_search]) %>
+    <% if params[:search].present? %>
+      <%= link_to(customers_path) do %>
+        <span class="glyphicon glyphicon-remove"></span>      
+    <% end %>
 
-        <span class="input-group-btn">
-          <%= submit_tag "Procurar", class: "btn btn-default" %>
-        </span>
-      </div>
-      <% end %>
+  <% end %>
+<% end %>

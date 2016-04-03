@@ -1,3 +1,20 @@
+
+ <div class="well">
+    <%= link_to "New Product", new_customer_path, remote: true, class: "btn btn-primary" %>
+  </div>
+
+<div id="demo-form" class="demo-description" style="display: none; ">
+  <p>
+    The basic dialog window is an overlay positioned within the viewport and is protected from page content
+    (like select elements) shining through with an iframe. It has a title bar and a content area, and can be moved,
+    resized and closed with the 'x' icon by default.
+  </p>
+</div>
+
+<%=  link_to_modal "Demo Form", "#demo-form", :class=>"button" %>
+
+
+
 <% if notice %><p class="alert alert-success"><%= notice %></p><% end %>
 <h1>Clientes</h1>
 <p>
@@ -24,7 +41,7 @@
       <th><%= sort_link @search, :cod, "Código acesso" %></th>     
       <th>Honorarios</th>
       <th>Cliente Desde</th>
-      <th colspan="3"></th>
+      <th colspan="3">Ação</th>
     </tr>
   </thead>
 
@@ -39,28 +56,27 @@
         <td><%= customer.cgf %></td>
         <td><%= customer.cod %></td>
         <td><%= customer.honorarios %></td>        
-        <td><%= customer.desde.strftime("%d/%m/%Y") %></td>
-        <td><%= link_to 'Show', customer %>
-        <%= link_to 'Edit', edit_customer_path(customer) %>
-        <%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= customer.desde.strftime("%d/%m/%Y") if customer.desde.present?%></td>
+        <td><%= link_to 'Exibir', customer, class: "btn btn-default" %></td>
+        <td><%= link_to 'Editar', edit_customer_path(customer), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Excluir', customer, method: :delete, data: { confirm: 'Tem certeza?' } , class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
+</div>
 
 
 <div class="row">
-  <div class="col-md-1">
+  <div class="col-md-1 pull-right">
     <%= select_tag :per_page, options_for_select([params[:pagination].to_i,params[:pagination].to_i*2,params[:pagination].to_i*5,250,'Todos'], params[:per_page].to_i),
-       :onchange => "if(this.value){window.location='?per_page='+this.value;}" ,:class=>"form-control input-sm position-to-pagination"%>
-  </div>
-  <div class="col-md-6">       
+	       :onchange => "if(this.value){window.location=window.location.href+'?per_page='+this.value;}" ,:class=>"form-control input-sm position-to-pagination"%>
+   </div>
+   <div class="col-md-4">   
     <%= will_paginate @customers, renderer: BootstrapPagination::Rails %>
   </div>
          
-  <div class="total position-to-pagination">
+  <div class="total position-to-pagination pull-right">
     <b>Total: </b>(<%= @total %>)
     <b> - Paginação: </b>(<%= @ppage %>)
   </div>
@@ -68,3 +84,4 @@
 
 
 
+<div id="customer-modal" class="modal fade"></div>
