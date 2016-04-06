@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  respond_to :html, :json
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /customers

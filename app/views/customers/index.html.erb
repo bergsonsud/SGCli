@@ -1,17 +1,20 @@
+<!-- <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
+ -->
+
+<!-- <form id="login-form" class="modal">
+  haha
+</form>
+
+<a href="#login-form" rel="modal:open">Login</a> -->
+
+<%= render 'dialog' %>
+
 
  <div class="well">
     <%= link_to "New Product", new_customer_path, remote: true, class: "btn btn-primary" %>
+    <div id="modal" class="modal fade" role="dialog"></div>
   </div>
-
-<div id="demo-form" class="demo-description" style="display: none; ">
-  <p>
-    The basic dialog window is an overlay positioned within the viewport and is protected from page content
-    (like select elements) shining through with an iframe. It has a title bar and a content area, and can be moved,
-    resized and closed with the 'x' icon by default.
-  </p>
-</div>
-
-<%=  link_to_modal "Demo Form", "#demo-form", :class=>"button" %>
 
 
 
@@ -84,4 +87,3 @@
 
 
 
-<div id="customer-modal" class="modal fade"></div>

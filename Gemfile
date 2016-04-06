@@ -33,6 +33,9 @@ gem 'mysql2'
 gem 'jquery-rails', '~> 2.3.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'simple_form'
+gem 'responders', '~> 2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -42,14 +45,15 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :assets do
-  gem 'jquery-ui-rails'
-  gem 'jquery-modal-rails'
-end	
+# group :assets do
+#   gem 'jquery-ui-rails'
+#   gem 'jquery-modal-rails'
+# end	
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'byebug'  
+  gem 'spring'
 end
 
 group :development do
