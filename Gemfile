@@ -34,7 +34,7 @@ gem 'jquery-rails', '~> 2.3.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'simple_form'
-gem 'responders', '~> 2.0'
+#gem 'responders', '~> 2.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -54,6 +54,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'  
   gem 'spring'
+  gem 'web-console', '~> 2.0'
 end
 
 group :development do

@@ -1,0 +1,15 @@
+<tr id="customer_<%= customer.id %>">
+	<td><%= customer.id %></td>
+	<td><%= customer.razao %></td>
+	<td><%= customer.iss %></td>
+	<td><%= customer.cnpj %></td>
+	<td><%= customer.cei %></td>
+	<td><%= customer.cgf %></td>
+	<td><%= customer.cod %></td>
+	<td><%= customer.honorarios %></td>
+	<td><%= customer.desde.strftime("%d/%m/%Y") if customer.desde.present?%></td>
+	<td><%= link_to 'Exibir', customer, remote: true,class: "btn btn-sm btn-default" %>
+		<%= link_to 'Editar', edit_customer_path(customer), remote: true, :class => 'btn btn-sm btn-primary' %>
+		<%= link_to 'Excluir', customer, remote: true, :method => :delete, data: {confirm: "Excluir cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-danger' %>
+	</td>
+</tr>

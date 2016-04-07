@@ -1,40 +1,19 @@
-<!-- <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
- -->
+<div class="container">
 
-<!-- <form id="login-form" class="modal">
-  haha
-</form>
-
-<a href="#login-form" rel="modal:open">Login</a> -->
-
-<%= render 'dialog' %>
-
-
- <div class="well">
-    <%= link_to "New Product", new_customer_path, remote: true, class: "btn btn-primary" %>
-    <div id="modal" class="modal fade" role="dialog"></div>
-  </div>
-
-
-
-<% if notice %><p class="alert alert-success"><%= notice %></p><% end %>
-<h1>Clientes</h1>
-<p>
-
+  <h2>Clientes</h2>
 <div class="row no-more-tables">
   <div class="col-sm-2  navbar-form ">
-      <%= link_to 'Novo Cliente', new_customer_path , class: "btn btn-success"%>
+    <%= link_to "Novo cliente", new_customer_path, remote: true, class: "btn btn-success" %>
   </div>
-    <div class="col-sm-2 navbar-form pull-right">
+  <div class="new-customer"></div>
+
+  <div class="col-sm-2 navbar-form pull-right">
       <%= render "search" %>
   </div>
 </div>
-
-
-<div id="no-more-tables">
-    <table class="col-md-12 table-bordered table-striped table-condensed cf table">
-      <thead>
+  <table id class="table table-bordered table-striped">
+    <thead>
+    <tr>
       <th><%= sort_link @search, :id, "Código Cliente" %></th>
       <th><%= sort_link @search, :razao, "Razão Social" %></th>
       <th><%= sort_link @search, :iss, "ISS" %></th>
@@ -46,44 +25,12 @@
       <th>Cliente Desde</th>
       <th colspan="3">Ação</th>
     </tr>
-  </thead>
+    </thead>
+    <tbody id="customers">
+    <%= render @customers %>
+    </tbody>
+  </table>
 
-  <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= customer.id %></td>
-        <td><%= customer.razao %></td>
-        <td><%= customer.iss %></td>
-        <td><%= customer.cnpj %></td>
-        <td><%= customer.cei %></td>
-        <td><%= customer.cgf %></td>
-        <td><%= customer.cod %></td>
-        <td><%= customer.honorarios %></td>        
-        <td><%= customer.desde.strftime("%d/%m/%Y") if customer.desde.present?%></td>
-        <td><%= link_to 'Exibir', customer, class: "btn btn-default" %></td>
-        <td><%= link_to 'Editar', edit_customer_path(customer), class: "btn btn-primary" %></td>
-        <td><%= link_to 'Excluir', customer, method: :delete, data: { confirm: 'Tem certeza?' } , class: "btn btn-danger" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= render 'dialog' %>
+
 </div>
-
-
-<div class="row">
-  <div class="col-md-1 pull-right">
-    <%= select_tag :per_page, options_for_select([params[:pagination].to_i,params[:pagination].to_i*2,params[:pagination].to_i*5,250,'Todos'], params[:per_page].to_i),
-	       :onchange => "if(this.value){window.location=window.location.href+'?per_page='+this.value;}" ,:class=>"form-control input-sm position-to-pagination"%>
-   </div>
-   <div class="col-md-4">   
-    <%= will_paginate @customers, renderer: BootstrapPagination::Rails %>
-  </div>
-         
-  <div class="total position-to-pagination pull-right">
-    <b>Total: </b>(<%= @total %>)
-    <b> - Paginação: </b>(<%= @ppage %>)
-  </div>
-</div>    
-
-
-

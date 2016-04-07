@@ -1,5 +1,4 @@
-class CustomersController < ApplicationController
-  respond_to :html, :json
+class CustomersController < ApplicationController  
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /customers
@@ -24,6 +23,7 @@ class CustomersController < ApplicationController
     @customers = @search.result.paginate( :per_page => @per_page, :page => params[:page])
     @total = @customers.count
     @ppage = @per_page
+    #@customers = Customer.paginate( :per_page => @per_page, :page => params[:page]).all
   end
 
   # GET /customers/1
@@ -48,10 +48,10 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
-        format.json { render :show, status: :created, location: @customer }
-      else
-        format.html { render :new }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
+        format.json { head :no_content }
+        format.js
+      else        
+        format.json { render json: @customer.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -61,10 +61,9 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @customer }
-      else
-        format.html { render :edit }
+        format.json { head :no_content }
+        format.js
+      else        
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
@@ -75,7 +74,8 @@ class CustomersController < ApplicationController
   def destroy
     @customer.destroy
     respond_to do |format|
-      format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
+      format.html { redirect_to customers_url}
+      ormat.js      
       format.json { head :no_content }
     end
   end
