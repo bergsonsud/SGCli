@@ -1,1 +1,15 @@
-<%= @customer.razao %>
+<h2><%= @customer.razao %></h2>
+<i class='glyphicon glyphicon-home'></i>
+Rua x, 999 Jardim Oliveira - Fortaleza-CE
+<br>
+<% if @customer.telefone.present? %>
+	<i class='glyphicon glyphicon-phone'></i>
+	<%= @customer.telefone %>
+	<br>
+<% end %>
+<i class='glyphicon glyphicon-envelope'></i>
+user@gmail.com
+<br>
+Cliente desde: 01/01/2000
+<br>
+
