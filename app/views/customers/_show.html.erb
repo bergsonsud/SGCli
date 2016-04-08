@@ -1,15 +1,23 @@
-<h2><%= @customer.razao %></h2>
+<h3><%= @customer.razao %></h3>
 <i class='glyphicon glyphicon-home'></i>
-Rua x, 999 Jardim Oliveira - Fortaleza-CE
+<%= @customer.address %>
 <br>
-<% if @customer.telefone.present? %>
+<% if @customer.celular.present? %>
 	<i class='glyphicon glyphicon-phone'></i>
-	<%= @customer.telefone %>
+	<%= @customer.mobilephone_numbers %>	
+<% end %>
+<% if @customer.telefone.present? %>
+	<i class='glyphicon glyphicon-phone-alt'></i>
+	<%= @customer.phone_numbers %>
 	<br>
 <% end %>
-<i class='glyphicon glyphicon-envelope'></i>
-user@gmail.com
-<br>
-Cliente desde: 01/01/2000
+<% if @customer.email.present? %>
+	<i class='glyphicon glyphicon-envelope'></i>
+	<%= @customer.mail %>
+	<br>
+<% end %>	
+<% if @customer.desde.present? %>
+	Cliente desde: <%= @customer.since %> <%= time_ago_in_words(@customer.desde) %>
+<% end %>
 <br>
 
