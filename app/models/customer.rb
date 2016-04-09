@@ -2,7 +2,13 @@ class Customer < ActiveRecord::Base
 	self.per_page = 20
 
 	def address
-		"#{logradouro}, #{numero} #{complemento} #{bairro} - #{municipio}-#{estado}"		
+		if municipio.present?
+			"#{logradouro}, #{numero} #{complemento} #{bairro} - #{municipio}-#{estado}"		
+		elsif estado.present?
+			"#{logradouro}, #{numero} #{complemento} #{bairro}"
+		else
+			"#{logradouro}, #{numero} #{complemento} #{bairro}"
+		end
 	end
 
 	def phone_numbers

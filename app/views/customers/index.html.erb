@@ -1,3 +1,26 @@
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#inicio').datepicker({
+          todayBtn: "linked",
+          language: "pt-BR",
+          autoclose: true,
+          todayHighlight: true
+        });
+          $('#fim').datepicker({
+          todayBtn: "linked",
+          language: "pt-BR",
+          autoclose: true,
+          todayHighlight: true
+        });       
+     });
+    </script>
+    
+
+    <input id="inicio">
+
+
 <div class="container">
 
   <h2>Clientes</h2>
@@ -11,16 +34,16 @@
       <%= render "search" %>
   </div>
 </div>
-  <table id class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped">
     <thead>
     <tr>
       <th><%= sort_link @search, :id, "Código Cliente" %></th>
-      <th><%= sort_link @search, :razao, "Razão Social" %></th>
+      <th class="col-xs-3"><%= sort_link @search, :razao, "Razão Social" %></th>
       <th><%= sort_link @search, :iss, "ISS" %></th>
       <th><%= sort_link @search, :cnpj, "CNPJ" %></th>
       <th><%= sort_link @search, :cei, "CEI" %></th>
       <th><%= sort_link @search, :cgf, "CGF" %></th>
-      <th><%= sort_link @search, :cod, "Código acesso" %></th>     
+        
       <th>Honorarios</th>
       <th>Cliente Desde</th>
       <th colspan="3">Ação</th>

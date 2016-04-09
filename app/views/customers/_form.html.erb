@@ -1,3 +1,5 @@
+
+
 <%= form_for(@customer, remote: true, :html => { :role => "form" }) do |f| %>
 <% if @customer.errors.any? %>
 <div id="error_explanation">
@@ -117,3 +119,19 @@
 </div>
 </div>
 <% end %>
+
+
+
+        
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#customer_desde').datepicker({
+          todayBtn: "linked",
+          language: "pt-BR",
+          autoclose: true,
+          todayHighlight: true
+        });
+               
+     });
+    </script>
