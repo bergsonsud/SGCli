@@ -1,8 +1,10 @@
 
 
 <%= form_for(@customer, remote: true, :html => { :role => "form" }) do |f| %>
+<div id="error_explanation" class="bg-danger text-danger">
+</div>
 <% if @customer.errors.any? %>
-<div id="error_explanation">
+<div id="error_explanation2">
   <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
   <ul>
     <% @customer.errors.full_messages.each do |message| %>
@@ -13,27 +15,27 @@
 <% end %>
 <div class="field">
   <%= f.label :razao %><br>
-  <%= f.text_field :razao %>
+  <%= f.text_field :razao, required: true %>
 </div>
 <div class="field">
   <%= f.label :iss %><br>
-  <%= f.text_field :iss %>
+  <%= f.text_field :iss,:maxlength => 14 %>
 </div>
 <div class="field">
   <%= f.label :cnpj %><br>
-  <%= f.text_field :cnpj %>
+  <%= f.text_field :cnpj,:maxlength => 14  %>
 </div>
 <div class="field">
   <%= f.label :cei %><br>
-  <%= f.text_field :cei %>
+  <%= f.text_field :cei,:maxlength => 12 %>
 </div>
 <div class="field">
   <%= f.label :cgf %><br>
-  <%= f.text_field :cgf %>
+  <%= f.text_field :cgf,:maxlength => 14 %>
 </div>
 <div class="field">
   <%= f.label :cod %><br>
-  <%= f.text_field :cod %>
+  <%= f.text_field :cod,:maxlength => 30 %>
 </div>
 <div class="field">
   <%= f.label :logradouro %><br>
