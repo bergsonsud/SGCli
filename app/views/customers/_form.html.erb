@@ -3,28 +3,26 @@
 <%= form_for(@customer, remote: true, :html => { :role => "form" }) do |f| %>
 <div id="error_explanation" class="bg-danger text-danger">
 </div>
-<% if @customer.errors.any? %>
-<div id="error_explanation2">
-  <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
-  <ul>
-    <% @customer.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
+
+<h3>Dados</h3>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= f.label :razao, :class => "form-control-label field" %>
+    <%= f.text_field :razao,:class => "form-control input-md", required: true , :maxlength => 150, size: 150%>
+  </div>
+  <div class="col-md-3">
+    <%= f.label :iss %><br>
+    <%= f.text_field :iss,:class => "form-control input-md",:maxlength => 14 %>  
+  </div>
+  <div class="col-md-3">
+    <%= f.label :cnpj %><br>
+    <%= f.text_field :cnpj,:class => "form-control input-md",:maxlength => 14 %>  
+  </div>
 </div>
-<% end %>
-<div class="field">
-  <%= f.label :razao %><br>
-  <%= f.text_field :razao, required: true %>
-</div>
-<div class="field">
-  <%= f.label :iss %><br>
-  <%= f.text_field :iss,:maxlength => 14 %>
-</div>
-<div class="field">
-  <%= f.label :cnpj %><br>
-  <%= f.text_field :cnpj,:maxlength => 14  %>
-</div>
+
+
+
 <div class="field">
   <%= f.label :cei %><br>
   <%= f.text_field :cei,:maxlength => 12 %>

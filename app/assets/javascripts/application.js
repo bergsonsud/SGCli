@@ -31,5 +31,5 @@ $(document).ajaxError(function(event,xhr,options,exc) {
     kk +="</ul>"
 
     $("#error_explanation").html(kk);
-       
-});
+    
+  });
