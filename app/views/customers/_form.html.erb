@@ -5,12 +5,137 @@
 </div>
 
 <h3>Dados</h3>
-
+  
 <div class="row">
-  <div class="col-md-6">
-    <%= f.label :razao, :class => "form-control-label field" %>
-    <%= f.text_field :razao,:class => "form-control input-md", required: true , :maxlength => 150, size: 150%>
+    <div class="col-md-9">
+      <label class="field">Razão Social</label>
+      <%= f.text_field :razao,:class => "form-control input-md", required: true , :maxlength => 150, size: 150%>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :desde %><br>
+      <% if @customer.new_record? %>
+      <%= text_field 'customer',:desde,:value => Time.now.strftime("%d/%m/%Y"),:class => "form-control input-md" %>
+      <% elsif @customer.desde.present? %>
+      <%= text_field 'customer',:desde,:value => @customer.desde.strftime("%d/%m/%Y"),:class => "form-control input-md"  %>
+      <% else @customer.desde.present? %>
+      <%= text_field 'customer',:desde,:class => "form-control input-md" %>
+      <% end %>
   </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-6">
+    <%= f.label :logradouro %><br>
+    <%= f.text_field :logradouro,:class => "form-control input-md",:maxlength => 150 %>  
+  </div>
+  <div class="col-md-2">
+    <%= f.label :numero %><br>
+    <%= f.text_field :numero,:class => "form-control input-md",:maxlength => 9 %>  
+  </div>
+  <div class="col-md-4">
+    <%= f.label :bairro %><br>
+    <%= f.text_field :bairro,:class => "form-control input-md",:maxlength => 9 %>  
+  </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-6">
+    <%= f.label :complemento %><br>
+    <%= f.text_field :complemento,:class => "form-control input-md",:maxlength => 150 %>  
+  </div>
+  <div class="col-md-4">
+    <%= f.label :municipio %><br>
+    <%= f.text_field :municipio,:class => "form-control input-md",:maxlength => 9 %>  
+  </div>
+  <div class="col-md-2">
+    <%= f.label :estado %><br>
+    <%= f.select(:estado, options_for_select([
+        ['', ''],
+        ['AC', 'AC'],
+        ['AL', 'AL'],
+        ['AP', 'AP'],
+        ['AM', 'AM'],
+        ['BA', 'BA'],
+        ['CE', 'CE'],
+        ['DF', 'DF'],
+        ['ES', 'ES'],
+        ['GO', 'GO'],
+        ['MA', 'MA'],
+        ['MT', 'MT'],
+        ['MS', 'MS'],
+        ['MG', 'MG'],
+        ['PA', 'PA'],
+        ['PB', 'PB'],
+        ['PR', 'PR'],
+        ['PE', 'PE'],
+        ['PI', 'PI'],
+        ['RJ', 'RJ'],
+        ['RN', 'RN'],
+        ['RS', 'RS'],
+        ['RO', 'RO'],
+        ['RR', 'RR'],
+        ['SC', 'SC'],
+        ['SP', 'SP'],
+        ['SE', 'SE'],
+        ['TO', 'TO']],
+      selected: @customer.estado),{},{:class => "form-control"}) %>
+  </div>
+</div>
+<br>
+
+<h3>Contatos</h3>
+
+
+<div class="row"> 
+  <div class="col-md-2">
+    <%= f.label :telefone %><br>
+    <%= f.text_field :telefone,:class => "form-control input-md",:maxlength => 9 %>  
+  </div>
+  <div class="col-md-2">
+    <%= f.label :telefone2 %><br>
+    <%= f.text_field :telefone2,:class => "form-control input-md",:maxlength => 9 %>  
+  </div>
+  <div class="col-md-2">
+    <%= f.label :telefone3 %><br>
+    <%= f.text_field :telefone3,:class => "form-control input-md",:maxlength => 9 %>
+  </div>
+  <div class="col-md-2">
+    <%= f.label :celular %><br>
+    <%= f.text_field :celular,:class => "form-control input-md",:maxlength => 9 %>
+  </div>
+  <div class="col-md-2">
+    <%= f.label :celular2 %><br>
+    <%= f.text_field :celular2,:class => "form-control input-md",:maxlength => 9 %>
+  </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-4">
+    <%= f.label :contato %><br>
+    <%= f.text_field :contato,:class => "form-control input-md",:maxlength => 32 %>  
+  </div>
+  <div class="col-md-4">
+    <%= f.label :contato2 %><br>
+    <%= f.text_field :contato2,:class => "form-control input-md",:maxlength => 32 %>  
+  </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-6">
+    <%= f.label :email %><br>
+    <%= f.text_field :email,:class => "form-control input-md",:maxlength => 32 %>  
+  </div>  
+  <div class="col-md-6">  
+    <%= f.label :email2 %><br>
+    <%= f.text_field :email2,:class => "form-control input-md",:maxlength => 32 %>  
+  </div>
+</div>
+
+<br>
+
+<h3>Dados empresariais</h3>
+
+<div class="row"> 
   <div class="col-md-3">
     <%= f.label :iss %><br>
     <%= f.text_field :iss,:class => "form-control input-md",:maxlength => 14 %>  
@@ -19,102 +144,37 @@
     <%= f.label :cnpj %><br>
     <%= f.text_field :cnpj,:class => "form-control input-md",:maxlength => 14 %>  
   </div>
-</div>
+    <div class="col-md-3">
+    <%= f.label :cei %><br>
+    <%= f.text_field :cei,:class => "form-control input-md",:maxlength => 12 %>
+  </div>
+  <div class="col-md-3">
+    <%= f.label :cgf %><br>
+    <%= f.text_field :cgf,:class => "form-control input-md",:maxlength => 14 %>
+  </div>
 
-
-
-<div class="field">
-  <%= f.label :cei %><br>
-  <%= f.text_field :cei,:maxlength => 12 %>
 </div>
-<div class="field">
-  <%= f.label :cgf %><br>
-  <%= f.text_field :cgf,:maxlength => 14 %>
+<br>
+<div class="row">
+  <div class="col-md-8">
+    <%= f.label :cod %><br>
+    <%= f.text_field :cod,:class => "form-control input-md",:maxlength => 30 %>
+  </div>
+  <div class="col-md-4">
+    <%= f.label :honorarios %><br>
+    <%= f.text_field :honorarios,:class => "form-control input-md",:maxlength => 30 %>
+  </div>
 </div>
-<div class="field">
-  <%= f.label :cod %><br>
-  <%= f.text_field :cod,:maxlength => 30 %>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <%= f.label :endereco_coleta %><br>
+    <%= f.text_field :endereco_coleta,:class => "form-control input-md",:maxlength => 30 %>
+  </div>  
 </div>
-<div class="field">
-  <%= f.label :logradouro %><br>
-  <%= f.text_field :logradouro %>
-</div>
-<div class="field">
-  <%= f.label :numero %><br>
-  <%= f.text_field :numero %>
-</div>
-<div class="field">
-  <%= f.label :bairro %><br>
-  <%= f.text_field :bairro %>
-</div>
-<div class="field">
-  <%= f.label :complemento %><br>
-  <%= f.text_field :complemento %>
-</div>
-<div class="field">
-  <%= f.label :municipio %><br>
-  <%= f.text_field :municipio %>
-</div>
-<div class="field">
-  <%= f.label :estado %><br>
-  <%= f.text_field :estado %>
-</div>
-<div class="field">
-  <%= f.label :telefone %><br>
-  <%= f.text_field :telefone %>
-</div>
-<div class="field">
-  <%= f.label :telefone2 %><br>
-  <%= f.text_field :telefone2 %>
-</div>
-<div class="field">
-  <%= f.label :telefone3 %><br>
-  <%= f.text_field :telefone3 %>
-</div>
-<div class="field">
-  <%= f.label :celular %><br>
-  <%= f.text_field :celular %>
-</div>
-<div class="field">
-  <%= f.label :celular2 %><br>
-  <%= f.text_field :celular2 %>
-</div>
-<div class="field">
-  <%= f.label :email %><br>
-  <%= f.text_field :email %>
-</div>
-<div class="field">
-  <%= f.label :email2 %><br>
-  <%= f.text_field :email2 %>
-</div>
-<div class="field">
-  <%= f.label :contato %><br>
-  <%= f.text_field :contato %>
-</div>
-<div class="field">
-  <%= f.label :contato2 %><br>
-  <%= f.text_field :contato2 %>
-</div>
-<div class="field">
-  <%= f.label :endereco_coleta %><br>
-  <%= f.text_field :endereco_coleta %>
-</div>
-<div class="field">
-  <%= f.label :honorarios %><br>
-  <%= f.text_field :honorarios %>
-</div>
-<div class="field">
-  <%= f.label :desde %><br>
-  <% if @customer.new_record? %>
-  <%= text_field 'customer',:desde,:value => Time.now.strftime("%d/%m/%Y") %>
-  <% elsif @customer.desde.present? %>
-  <%= text_field 'customer',:desde,:value => @customer.desde.strftime("%d/%m/%Y")  %>
-  <% else @customer.desde.present? %>
-  <%= text_field 'customer',:desde %>
-  <% end %>
-</div>
+<br>
 <div class="form-group">
-  <%= f.submit  @customer.new_record? ? "Create Create" : "Update Customer", :class => "btn btn-primary" %>
+  <%= f.submit  @customer.new_record? ? "Criar" : "Atualizar", :class => "btn btn-primary" %>
 </div>
 </div>
 </div>
