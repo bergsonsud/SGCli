@@ -8,9 +8,9 @@
         ['CEI', 'cei'],
         ['CGF', 'cgf'],
         ['Código Acesso', 'cod']],
-      selected: params[:type_search]),class: "form-control" %>
+      selected: params[:type_search]),class: "form-control fields-show-view" %>
       <span class="input-group-btn">
-        <%= text_field_tag :search, params[:search], placeholder: "Busca", class: "form-control",autocomplete: "off" %>          
+        <%= text_field_tag :search, params[:search], placeholder: "Busca", class: "form-control fields-show-view",autocomplete: "off" %>          
         <%= button_tag(type: 'submit', class: "btn btn-primary",value: 'buscar') do %>
         <span class="glyphicon glyphicon-search"></span>
       </span>

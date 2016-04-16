@@ -113,8 +113,6 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
-    mysql2 (0.4.2)
-    mysql2 (0.4.2-x86-mingw32)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nokogiri (1.6.7.2-x86-mingw32)
@@ -213,7 +211,6 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails (~> 2.3.0)
-  mysql2
   rails (= 4.2.6)
   ransack
   sass-rails (~> 5.0)

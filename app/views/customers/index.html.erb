@@ -1,9 +1,9 @@
 <div class="container">
 
-  <h2>Clientes</h2>
+  <h1 class="section">Clientes</h1>
 <div class="row no-more-tables">
   <div class="col-sm-2  navbar-form ">
-    <%= link_to "Novo cliente", new_customer_path, remote: true, class: "btn btn-success" %>
+    <%= link_to "Novo cliente", new_customer_path, remote: true, class: "btn btn-success fields-show-button" %>
   </div>
   <div class="new-customer"></div>
 
@@ -14,16 +14,16 @@
   <table class="table table-bordered table-striped">
     <thead>
     <tr>
-      <th><%= sort_link @search, :id, "Código Cliente" %></th>
-      <th class="col-xs-3"><%= sort_link @search, :razao, "Razão Social" %></th>
-      <th><%= sort_link @search, :iss, "ISS" %></th>
-      <th><%= sort_link @search, :cnpj, "CNPJ" %></th>
-      <th><%= sort_link @search, :cei, "CEI" %></th>
-      <th><%= sort_link @search, :cgf, "CGF" %></th>
+      <th><label class="section"><%= sort_link @search, :id, "Código Cliente" %></label></th>
+      <th class="col-xs-3"><label class="section"><%= sort_link @search, :razao, "Razão Social" %></label></th>
+      <th><label class="section"><%= sort_link @search, :iss, "ISS" %></label></th>
+      <th><label class="section"><%= sort_link @search, :cnpj, "CNPJ" %></label></th>
+      <th><label class="section"><%= sort_link @search, :cei, "CEI" %></label></th>
+      <th><label class="section"><%= sort_link @search, :cgf, "CGF" %></label></th>
         
-      <th>Honorarios</th>
-      <th>Cliente Desde</th>
-      <th colspan="3">Ação</th>
+      <th><label class="section">Honorarios</label></th>
+      <th><label class="section">Cliente Desde</label></th>
+      <th colspan="3"><label class="section">Ação</label></th>
     </tr>
     </thead>
     <tbody id="customers">
@@ -33,4 +33,20 @@
 
   <%= render 'dialog' %>
 
+
+
+<div class="row">
+  <div class="col-md-1 pull-right">
+    <%= select_tag :per_page, options_for_select(['',5,10,20,50,'Todos'], params[:per_page].to_i),
+       :onchange => "if(this.value){window.location='?per_page='+this.value;}" ,:class=>"form-control input-sm"%>
+  </div>
+         
+  <div class="total position-to-pagination">
+    <b>Total: </b>(<%= @total %>)
+    <b> - Paginação: </b>(<%= @ppage %>)
+  </div>
 </div>
+
+<div class="pull-right">
+    <%= will_paginate @customers, renderer: BootstrapPagination::Rails %>
+</div>           

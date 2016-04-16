@@ -19,32 +19,32 @@ ActiveRecord::Schema.define(version: 20160416030204) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string   "razao",           limit: 255
-    t.string   "iss",             limit: 255
-    t.string   "cnpj",            limit: 255
-    t.string   "cei",             limit: 255
-    t.string   "cgf",             limit: 255
-    t.string   "cod",             limit: 255
-    t.string   "logradouro",      limit: 255
-    t.string   "numero",          limit: 255
-    t.string   "bairro",          limit: 255
-    t.string   "complemento",     limit: 255
-    t.string   "municipio",       limit: 255
-    t.string   "estado",          limit: 255
-    t.string   "telefone",        limit: 255
-    t.string   "telefone2",       limit: 255
-    t.string   "telefone3",       limit: 255
-    t.string   "celular",         limit: 255
-    t.string   "celular2",        limit: 255
-    t.string   "email",           limit: 255
-    t.string   "email2",          limit: 255
-    t.string   "contato",         limit: 255
-    t.string   "contato2",        limit: 255
-    t.string   "endereco_coleta", limit: 255
-    t.float    "honorarios",      limit: 24
+    t.string   "razao"
+    t.string   "iss"
+    t.string   "cnpj"
+    t.string   "cei"
+    t.string   "cgf"
+    t.string   "cod"
+    t.string   "logradouro"
+    t.string   "numero"
+    t.string   "bairro"
+    t.string   "complemento"
+    t.string   "municipio"
+    t.string   "estado"
+    t.string   "telefone"
+    t.string   "telefone2"
+    t.string   "telefone3"
+    t.string   "celular"
+    t.string   "celular2"
+    t.string   "email"
+    t.string   "email2"
+    t.string   "contato"
+    t.string   "contato2"
+    t.string   "endereco_coleta"
+    t.float    "honorarios"
     t.datetime "desde"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

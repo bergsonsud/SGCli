@@ -1,0 +1,9 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  lc_time_names: pt_BR
+  database: sgcli
+  pool: 5
+  username: root
+  password:	30071991
+  socket: /var/run/mysqld/mysqld.sock

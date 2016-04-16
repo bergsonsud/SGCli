@@ -1,15 +1,29 @@
 <tr id="customer_<%= customer.id %>">
-	<td><%= customer.id %></td>
-	<td><%= customer.razao %></td>
-	<td><%= customer.iss %></td>
-	<td><%= customer.cnpj %></td>
-	<td><%= customer.cei %></td>
-	<td><%= customer.cgf %></td>
+	<td><label class="fields-show-view"><%= customer.id %></label></td>
+	<td><label class="fields-show-view"><%= customer.razao %></label></td>
+	<td><label class="fields-show-view"><%= customer.iss %></label></td>
+	<td><label class="fields-show-view"><%= customer.cnpj %></label></td>
+	<td><label class="fields-show-view"><%= customer.cei %></label></td>
+	<td><label class="fields-show-view"><%= customer.cgf %></label></td>
 	
-	<td><%= customer.honorarios %></td>
-	<td><%= customer.desde.strftime("%d/%m/%Y") if customer.desde.present?%></td>
-	<td><%= link_to 'Exibir', customer, remote: true,class: "btn btn-sm btn-default" %></td>
-		<td><%= link_to 'Editar', edit_customer_path(customer), remote: true, :class => 'btn btn-sm btn-primary' %></td>
-		<td><%= link_to 'Excluir', customer, remote: true, :method => :delete, data: {confirm: "Excluir cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-danger' %>
+	<td><label class="fields-show-view"><%= customer.honorarios %></label></td>
+	<td>
+		<label class="fields-show-view">
+			<%= customer.desde.strftime("%d/%m/%Y") if customer.desde.present?%></label>
+		</td>
+	<td>
+		<label class="fields-show-button">
+			<%= link_to 'Exibir', customer, remote: true,class: "btn btn-sm btn-default" %>
+		</label>	
+	</td>
+	<td>
+		<label class="fields-show-button">
+			<%= link_to 'Editar', edit_customer_path(customer), remote: true, :class => 'btn btn-sm btn-primary' %>
+			</label>
+	</td>
+	<td>
+		<label class="fields-show-button">
+			<%= link_to 'Excluir', customer, remote: true, :method => :delete, data: {confirm: "Excluir cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-danger' %>
+			</label>
 	</td>
 </tr>
