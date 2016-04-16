@@ -1,35 +1,35 @@
-<h3><%= @customer.razao %></h3>
+<h3 class="section"><%= @customer.razao %></h3>
 
 <% if @customer.logradouro.present? or @customer.municipio.present? %>
 	<i class='glyphicon glyphicon-home'></i>
-	<%= @customer.address %>
+	<label class="fields-show-view"><%= @customer.address %></label>
 	<br>
 <% end %>
 
 <% if @customer.celular.present? or @customer.celular2.present?%>
 	<i class='glyphicon glyphicon-phone'></i>
-	<%= @customer.mobilephone_numbers %>	
+	<label class="fields-show-view"><%= @customer.mobilephone_numbers %></label>
 <% end %>
 
 <% if @customer.telefone.present? or @customer.telefone2.present? or @customer.telefone3.present? %>
 	<i class='glyphicon glyphicon-phone-alt'></i>
-	<%= @customer.phone_numbers %>
+	<label class="fields-show-view"><%= @customer.phone_numbers %></label>
 	<br>
 <% end %>
 
 <% if @customer.email.present? or @customer.email2.present? %>
 	<i class='glyphicon glyphicon-envelope'></i>
-	<%= @customer.mail %>
+	<label class="fields-show-view"><%= @customer.mail %></label>
 	<br>
 <% end %>
 <br>
 <% if @customer.endereco_coleta.present? %>
-	Endereço coleta: <%= @customer.endereco_coleta %>
+	<label class="th-field">Endereço coleta:</label> <label class="fields-show-view"><%= @customer.endereco_coleta %></label>
 	<br>
 <% end %>
 
 <% if @customer.desde.present? %>
-	Cliente desde: <%= @customer.since %> <k class="desde-small">(<%= time_ago_in_words(@customer.desde) %>)</k>
+	<label class="th-field">Cliente desde:</label> <label class="fields-show-view"><%= @customer.since %> <k class="desde-small">(<%= time_ago_in_words(@customer.desde) %>)</k></label>
 	<br>
 <% end %>
 
@@ -37,24 +37,48 @@
 
 <table class="table table-bordered table-striped table-sm">
 	
-	<th>Código acesso</th>
-	<th>% honorários</th>
+	<th class="th-field">Código acesso</th>
+	<th class="th-field">% honorários</th>
 	<tr>
-		<td><%= @customer.cod if @customer.cod.present? %></td>
-		<td><%= number_to_percentage(@customer.honorarios, precision: 3) if @customer.honorarios.present? %></td>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.cod if @customer.cod.present? %>
+			</label>
+		</td>
+		<td>
+			<label class="fields-show-view">
+				<%= number_to_percentage(@customer.honorarios, precision: 3) if @customer.honorarios.present? %>
+			</label>
+		</td>
 	</tr>
 	
-	<th>CNPJ</th>
-	<th>ISS</th>
+	<th class="th-field">CNPJ</th>
+	<th class="th-field">ISS</th>
 	<tr>
-		<td><%= @customer.cnpj if @customer.cnpj.present? %></td>
-		<td><%= @customer.iss if @customer.iss.present? %></td>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.get_cnpj if @customer.get_cnpj.present? %>
+			</label>
+		</td>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.iss if @customer.iss.present? %>
+			</label>
+		</td>
 	</tr>
-	<th>CGF</th>
-	<th>CEI</th>
+	<th class="th-field">CGF</th>
+	<th class="th-field">CEI</th>
 	<tr>
-		<td><%= @customer.cgf if @customer.cgf.present? %></td>
-		<td><%= @customer.cei if @customer.cei.present? %></td>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.cgf if @customer.cgf.present? %>
+			</label>
+		</td>			
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.cei if @customer.cei.present? %>
+			</label>
+		</td>			
 	</tr>
 </table>
 

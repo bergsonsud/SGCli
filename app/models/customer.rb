@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
 	self.per_page = 20
+	
 
 	validates :razao, presence: true, uniqueness: true
 	validates :iss,:cnpj,numericality: true,uniqueness: true, length: { is: 14, message: "14 digitos" }
@@ -29,5 +30,11 @@ class Customer < ActiveRecord::Base
 	def since
 		"#{desde.strftime("%d/%m/%Y")}"
 	end
+
+	def get_cnpj
+		cnpj.sub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "\\1.\\2.\\3/\\4-\\2") # ==> 69.103.604/0001-60
+	end
+
+
 
 end
