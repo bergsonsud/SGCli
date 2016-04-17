@@ -1,25 +1,6 @@
-﻿Customer.create! razao:"A INDUSTRIA E COMERCIO LTDA",iss: "41944143985273",desde: "2012-05-06 00:00"
-Customer.create! razao:"B INDUSTRIA E COMERCIO LTDA",iss: "50318199394577",desde: "2005-04-13 00:00"
-Customer.create! razao:"C INDUSTRIA E COMERCIO LTDA",iss: "90836541848853",desde: "1997-11-05 00:00"
-Customer.create! razao:"D INDUSTRIA E COMERCIO LTDA",iss: "53163182599150",desde: "1998-06-25 00:00"
-Customer.create! razao:"E INDUSTRIA E COMERCIO LTDA",iss: "69413314574623",desde: "1992-10-08 00:00"
-Customer.create! razao:"F INDUSTRIA E COMERCIO LTDA",iss: "91920671248846",desde: "2014-01-23 00:00"
-Customer.create! razao:"G INDUSTRIA E COMERCIO LTDA",iss: "35445339710094",desde: "2008-04-29 00:00"
-Customer.create! razao:"H INDUSTRIA E COMERCIO LTDA",iss: "40937938686063",desde: "2005-09-14 00:00"
-Customer.create! razao:"I INDUSTRIA E COMERCIO LTDA",iss: "29345791293908",desde: "1997-07-23 00:00"
-Customer.create! razao:"J INDUSTRIA E COMERCIO LTDA",iss: "24388693820124",desde: "1996-06-27 00:00"
-Customer.create! razao:"K INDUSTRIA E COMERCIO LTDA",iss: "30212286870391",desde: "2001-07-26 00:00"
-Customer.create! razao:"L INDUSTRIA E COMERCIO LTDA",iss: "76724851946774",desde: "2004-01-18 00:00"
-Customer.create! razao:"M INDUSTRIA E COMERCIO LTDA",iss: "19238221125119",desde: "2002-08-03 00:00"
-Customer.create! razao:"N INDUSTRIA E COMERCIO LTDA",iss: "61082555285543",desde: "2007-04-05 00:00"
-Customer.create! razao:"O INDUSTRIA E COMERCIO LTDA",iss: "77527691018731",desde: "2014-01-22 00:00"
-Customer.create! razao:"P INDUSTRIA E COMERCIO LTDA",iss: "71572161332924",desde: "1994-05-03 00:00"
-Customer.create! razao:"Q INDUSTRIA E COMERCIO LTDA",iss: "68870192159398",desde: "1991-08-16 00:00"
-Customer.create! razao:"R INDUSTRIA E COMERCIO LTDA",iss: "35488642527611",desde: "2015-10-31 00:00"
-Customer.create! razao:"S INDUSTRIA E COMERCIO LTDA",iss: "31094294329168",desde: "2007-01-03 00:00"
-Customer.create! razao:"T INDUSTRIA E COMERCIO LTDA",iss: "48045140412580",desde: "1993-10-01 00:00"
-Customer.create! razao:"U INDUSTRIA E COMERCIO LTDA",iss: "24054838542091",desde: "2016-03-15 00:00"
-Customer.create! razao:"V INDUSTRIA E COMERCIO LTDA",iss: "33941761868153",desde: "1999-02-05 00:00"
-Customer.create! razao:"W INDUSTRIA E COMERCIO LTDA",iss: "20071681262355",desde: "1997-11-27 00:00"
-Customer.create! razao:"Y INDUSTRIA E COMERCIO LTDA",iss: "72760279425661",desde: "1996-02-27 00:00"
-Customer.create! razao:"Z INDUSTRIA E COMERCIO LTDA",iss: "82551407847157",desde: "2005-07-26 00:00"
+﻿
+razoes = ["Kamyla","Laura","Amanda","Alana"]
+
+razoes.each do |razao|
+	Customer.create! razao:razao	
+end
