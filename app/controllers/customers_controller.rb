@@ -45,15 +45,16 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
 
-    puts DateTime.parse(Time.now.to_s) 
-    @customer.desde = DateTime.parse(Time.now.to_s) if Date.parse(@customer.desde) == Date.today
+    
+    @customer.desde = DateTime.parse(Time.now.to_s) if Date.parse(@customer.desde.to_s) == Date.today
     
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        #format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { head :no_content }
         format.js
+        
       else        
         format.json { render json: @customer.errors.full_messages, status: :unprocessable_entity }
       end

@@ -38,9 +38,9 @@
 <div class="row">
   <div class="col-md-1 pull-right">
     <%= select_tag :per_page, options_for_select(['',5,10,20,50,'Todos'], params[:per_page].to_i),
-       :onchange => "if(this.value){window.location='?per_page='+this.value;}" ,:class=>"form-control input-sm"%>
+         :onchange => "if(this.value){window.location=window.location.href+'?&per_page='+this.value;}" ,:class=>"form-control input-sm"%>
   </div>
-         
+  
   <div class="total position-to-pagination">
     <b>Total: </b>(<%= @total %>)
     <b> - Paginação: </b>(<%= @ppage %>)

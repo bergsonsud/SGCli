@@ -1,9 +1,16 @@
 class Customer < ActiveRecord::Base
 	self.per_page = 5
 	
+	
 
 	validates :razao, presence: true, uniqueness: true
-	# validates :iss,:cnpj,numericality: true,uniqueness: true, length: { is: 14, message: "14 digitos" }
+	# validates :municipio,:estado, presence: true
+	# validates :cnpj,:iss,presence: true
+	# validates :cnpj,{length: { is: 14 },uniqueness: true, numericality: true,if: 'cnpj.present?'}
+	# validates :iss,{length: { is: 14 },uniqueness: true, numericality: true,if: 'iss.present?'}
+
+
+
 
 	def address
 		if municipio.present?
