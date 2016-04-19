@@ -2,11 +2,15 @@
 	<td><label class="fields-show-view"><%= customer.id %></label></td>
 	<td><label class="fields-show-view"><%= customer.razao %></label></td>
 	<td><label class="fields-show-view"><%= customer.iss %></label></td>
-	<td><label class="fields-show-view"><%= customer.cnpj %></label></td>
+	<td><label class="fields-show-view"><%= customer.get_cnpj %></label></td>
 	<td><label class="fields-show-view"><%= customer.cei %></label></td>
 	<td><label class="fields-show-view"><%= customer.cgf %></label></td>
 	
-	<td><label class="fields-show-view"><%= customer.honorarios %></label></td>
+	<td>	
+		<label class="fields-show-view">
+			<%= number_to_percentage(customer.honorarios, precision: 3) if customer.honorarios.present? %>
+		</label>
+	</td>
 	<td>
 		<label class="fields-show-view">
 			<%= customer.desde.strftime("%d/%m/%Y") if customer.desde.present?%></label>

@@ -109,11 +109,13 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    maskmoney-rails (3.0.2.0)
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
     mysql2 (0.4.2)
+    mysql2 (0.4.2-x86-mingw32)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nokogiri (1.6.7.2-x86-mingw32)
@@ -166,9 +168,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simple_form (3.2.1)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
     spring (1.6.3)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -212,12 +211,12 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails (~> 2.3.0)
+  maskmoney-rails
   mysql2
   rails (= 4.2.6)
   ransack
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  simple_form
   spring
   sqlite3
   turbolinks

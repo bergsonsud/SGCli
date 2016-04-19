@@ -1,4 +1,8 @@
-
+<script>
+  $(function() {
+    $('#customer_honorarios').maskMoney();
+  })
+</script>
 
 <%= form_for(@customer, remote: true, :html => { :role => "form" }) do |f| %>
 <div id="error_explanation" class="bg-danger text-danger">
@@ -163,7 +167,7 @@
   </div>
   <div class="col-md-4">
     <label class="field">Honorários</label>
-    <%= f.text_field :honorarios,:class => "form-control input-md",:maxlength => 30 %>
+    <%= f.text_field :honorarios,:value => number_with_precision(@customer.honorarios, precision: 2),:class => "form-control input-md",:maxlength => 30 %>
   </div>
 </div>
 <br>
