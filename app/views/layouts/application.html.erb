@@ -10,6 +10,12 @@
 <body>
 	<div class="container">
 	<div id="modal-holder"></div>
+	
+	<% if controller_name != 'sessions' %>
+    <%= render 'devise/menu/registration_items' %>
+    <%= render 'devise/menu/login_items' %>
+  <% end %>
+
 		<%= yield %>
 	</div>			
 
