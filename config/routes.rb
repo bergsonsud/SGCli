@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users#, :only => [:index,:show,:edit,]
   root 'customers#index'  
   resources :customers
 

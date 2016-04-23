@@ -13,27 +13,29 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <label for="user_passwprd">Senha</label><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
-
+  <br />
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <label for="password_confirmation">Confirmarção Senha</label><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-
+  <br />
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+     <label for="current_password">Senha atual</label><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
+<br>
 
+<label for="admin">Administrador</label><br />
+<%= f.check_box :admin %>
+  
+
+  <br>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Atualizar", :class=>"btn btn-info" %>
   </div>
 <% end %>
 
-<h3>Excluir conta</h3>
 
-<p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

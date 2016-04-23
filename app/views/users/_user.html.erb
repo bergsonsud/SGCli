@@ -1,0 +1,16 @@
+<tr id="user_<%= user.id %>">
+	<td><label class="fields-show-view"><%= user.id %></label></td>
+	<td><label class="fields-show-view"><%= user.name %></label></td>
+	<td><label class="fields-show-view"><%= user.email %></label></td>
+	<td><label class="fields-show-view"><%= user.administrador %></label></td>
+		<td>
+		<label class="fields-show-button">
+			<%= link_to 'Exibir', user, remote: true,class: "btn btn-sm btn-default" %>
+		</label>	
+	</td>
+	<td>
+		<label class="fields-show-button">
+		<%= link_to 'Editar', edit_user_path(user), remote: true, :class => 'btn btn-sm btn-primary' %>
+		</label>
+	</td>
+</tr>

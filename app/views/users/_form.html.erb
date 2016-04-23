@@ -1,0 +1,18 @@
+<h2>Editar</h2>
+
+
+
+<%= form_for(@user, remote: true, :html => { :role => "form" }) do |f| %>
+ 
+
+<label for="admin">Administrador</label><br />
+<%= f.check_box :admin %>
+  
+
+  <br>
+  <div class="actions">
+    <%= f.submit "Atualizar", :class=>"btn btn-info" %>
+  </div>
+<% end %>
+
+
