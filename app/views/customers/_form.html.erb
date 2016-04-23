@@ -53,7 +53,7 @@
     <%= f.text_field :municipio,:class => "form-control input-md",:maxlength => 9 %>  
   </div>
   <div class="col-md-2">
-    <label class="field">Estado </label>
+    <label class="field gray">Estado </label>
     <%= f.select(:estado, options_for_select([
         ['', ''],
         ['AC', 'AC'],
@@ -83,7 +83,7 @@
         ['SP', 'SP'],
         ['SE', 'SE'],
         ['TO', 'TO']],
-      selected: @customer.estado),{},{:class => "form-control"}) %>
+      selected: @customer.estado),{},{:class => "form-control fields-show-view"}) %>
   </div>
 </div>
 <br>

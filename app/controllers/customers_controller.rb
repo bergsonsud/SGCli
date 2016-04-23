@@ -46,7 +46,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
 
     
-    @customer.desde = DateTime.parse(Time.now.to_s) if Date.parse(@customer.desde.to_s) == Date.today
+    @customer.desde = DateTime.parse(Time.zone.now.to_s) if Date.parse(@customer.desde.to_s) == Date.current
     
 
     respond_to do |format|

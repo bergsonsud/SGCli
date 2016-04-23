@@ -6,10 +6,7 @@ class User < ActiveRecord::Base
 
 
   def administrador
-  	if admin
-  		"Sim"
-  	else
-  		"Não"
-  	end
+    admin ? "Sim" : "Não"   
   end
+ 
 end

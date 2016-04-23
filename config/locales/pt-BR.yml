@@ -82,8 +82,8 @@ pt-BR:
         not_found: "não encontrado"
         not_locked: "não encontra-se bloqueada"
         not_saved:
-          one: "1 erro impediu a gravação de %{resource} :"
-          other: "%{count} erros impediram a gravação de %{resource} :"
+          one: "1 erro impediu a alteração :"
+          other: "%{count} erros impediram a alteração :"
         accepted: deve ser aceito
         blank: não pode ficar em branco
         present: deve ficar em branco
@@ -122,6 +122,10 @@ pt-BR:
 
   activerecord:
     attributes:
+        user:
+          password: "Senha"
+          password_confirmation: "Confirmação de Senha"
+          current_password: "Senha atual"
         customer:
           razao: "Razão Social"
           municipio: "Município"

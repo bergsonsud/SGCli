@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <% if controller_name != 'sessions' %>
+      <% if controller_name != 'sessions' && current_user.present? %>
         <%= render 'composer/menu' %>
       <% end %>
       <div id="modal-holder"></div>
