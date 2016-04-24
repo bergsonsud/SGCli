@@ -10,6 +10,10 @@ module DevisePermittedParameters
   def configure_permitted_parameters
     
     devise_parameter_sanitizer.for(:account_update) << :admin
+    devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :password
+    devise_parameter_sanitizer.for(:sign_up) << :email
+    devise_parameter_sanitizer.for(:sign_up) << :admin
     
 
 

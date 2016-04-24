@@ -6,10 +6,32 @@ class UsersController < ApplicationController
 	end
 
 	def show
-  	end
+  end
 
-  	def edit
-  	end
+
+  def edit
+  end
+
+  def new
+    @user = User.new    
+  end
+
+  def create
+    @current_user = current_user
+    @user = User.new(user_params)
+    
+    
+    respond_to do |format|
+      if @user.save       
+        format.json { head :no_content }
+        format.js 
+
+      else        
+        format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
+    current_user = @current_user
+  end
 
   	def update
 	    respond_to do |format|
@@ -29,7 +51,7 @@ class UsersController < ApplicationController
       format.js      
       format.json { head :no_content }
     end
-  end  	
+  end  
 
 private
     # Use callbacks to share common setup or constraints between actions.
@@ -38,6 +60,6 @@ private
     end
 
     def user_params
-      params.require(:user).permit(:admin,:name)
+      params.require(:user).permit(:name,:email,:password)
     end  	
 end

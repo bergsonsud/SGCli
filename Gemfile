@@ -28,7 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem 'ransack'
-gem 'mysql2'
+#gem 'mysql2'
 
 gem 'jquery-rails', '~> 2.3.0'
 gem 'bootstrap-sass', '~> 3.3.6'
