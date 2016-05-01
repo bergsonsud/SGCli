@@ -16,3 +16,28 @@
 	font-size: 11px;
 	font-weight: bold;
 }
+
+footer{
+  margin-top: 30px;
+}
+
+ footer ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+footer ul li {
+  display: inline;
+  margin-right: 1em;
+}
+
+footer ul li a {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.centered{
+  text-align: center;
+}
+
+

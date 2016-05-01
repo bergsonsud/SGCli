@@ -7,7 +7,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="container">
+    <div class="container bordered">
       <% if controller_name != 'sessions' && current_user.present? %>
         <%= render 'composer/menu' %>
       <% end %>
@@ -15,5 +15,7 @@
       
       <%= yield %>
     </div>
+   <%= render 'composer/footer' %> 
+    
   </body>
 </html>
