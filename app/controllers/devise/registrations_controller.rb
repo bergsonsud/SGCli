@@ -2,7 +2,7 @@ class Devise::RegistrationsController < DeviseController
   prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
   before_filter :configure_permitted_parameters
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   # GET /resource/sign_up
   def new
@@ -13,30 +13,44 @@ class Devise::RegistrationsController < DeviseController
   end
 
   # POST /resource
-  def create
+  def create2
     build_resource(sign_up_params)
-
-    resource.save
-    yield resource if block_given?
-	   if resource.persisted?
-	      if resource.active_for_authentication?
-	       @user = User.find(resource.id)
-	       # sign_up(resource_name, resource)
-	        respond_with resource, location: after_sign_up_path_for(resource)
-	        respond_with format.json { head :no_content }
-	        respond_with format.js
-	      else
-	        
-	        expire_data_after_sign_in!
-	        respond_with resource, location: after_inactive_sign_up_path_for(resource)
-	        
-	      end
-	    else
-	      clean_up_passwords resource
-	      set_minimum_password_length
-	      respond_with resource
-	    end
 	
+	    resource.save
+	    yield resource if block_given?
+		   if resource.persisted?
+		      if resource.active_for_authentication?
+		       @user = User.find(resource.id)
+		       # sign_up(resource_name, resource)
+		        
+		      else
+		        
+		        expire_data_after_sign_in!
+
+		      end
+		    else
+		      clean_up_passwords resource
+		      set_minimum_password_length
+	
+		    end
+	
+		
+  end
+
+  def create  
+    build_resource(sign_up_params)	
+	    
+
+    respond_to do |format|
+      if resource.save      
+        format.json { head :no_content }
+        format.js 
+
+      else       
+      messages = resource.errors.full_messages
+        format.json { render json: messages, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /resource/edit

@@ -17,11 +17,11 @@
 		</label>
 	</td>
 
-		<td>
-			<label class="fields-show-button">
-				
+	<td>
+		<label class="fields-show-button">
+			<%= link_to 'Editar', edit_user_path(user), remote: true, :class => 'btn btn-sm btn-primary' %>
 			</label>
-		</td>
+	</td>
 	<% if user.id != current_user.id %>		
 		<td>
 		<%= button_to "Excluir", user, data: { confirm: "Tem certeza?" }, method: :delete,remote: true, :class => 'btn btn-sm btn-danger' %>
