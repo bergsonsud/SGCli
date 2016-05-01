@@ -12,15 +12,15 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def new
+  def new  
     @user = User.new    
   end
 
-  def create
+  def create  
     @current_user = current_user
-    @user = User.new(user_params)
-    
-    
+    puts @current_user.name
+    @user = Usera.new(user_params)
+
     respond_to do |format|
       if @user.save       
         format.json { head :no_content }
@@ -30,7 +30,8 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
       end
     end
-    current_user = @current_user
+    sign_in(@current_user)
+     puts "############################################3########"
   end
 
   	def update
@@ -60,6 +61,6 @@ private
     end
 
     def user_params
-      params.require(:user).permit(:name,:email,:password)
+      params.require(:user).permit(:name,:email,:password,:admin)
     end  	
 end
