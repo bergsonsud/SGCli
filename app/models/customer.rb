@@ -13,10 +13,12 @@ class Customer < ActiveRecord::Base
 
 
 	def address
-		if municipio.present?
-			"#{logradouro}, #{numero} #{complemento} #{bairro} - #{municipio}-#{estado}"		
+		if municipio.present? and estado.present?
+			"#{logradouro}, #{numero} #{complemento} #{bairro} - #{municipio}-#{estado}"	
+		elsif municipio.present?
+			"#{logradouro}, #{numero} #{complemento} #{bairro} - #{municipio}"		
 		elsif estado.present?
-			"#{logradouro}, #{numero} #{complemento} #{bairro}"
+			"#{logradouro}, #{numero} #{complemento} - #{estado}"
 		else
 			"#{logradouro}, #{numero} #{complemento} #{bairro}"
 		end

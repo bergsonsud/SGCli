@@ -52,8 +52,8 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         #format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
-      #  format.json { head :no_content }
-       # format.js
+        format.json { head :no_content }
+        format.js
         
       else        
         format.json { render json: @customer.errors.full_messages, status: :unprocessable_entity }
