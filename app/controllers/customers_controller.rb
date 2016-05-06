@@ -4,7 +4,13 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    
+    if !valid_params?
+      puts "entrou aqui"
+      #definir as varivais para renderizar a view html
+
+      return
+    end
+
     type_search = params[:type_search]
     search = params[:search]
     params[:pagination] = Customer.per_page
@@ -94,5 +100,14 @@ class CustomersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
       params.require(:customer).permit(:razao, :iss, :cnpj, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde)
+    end
+
+    def valid_params?
+      if params[:type_search] == "id"
+        id = params[:search]
+        return false if id.to_i == 0 
+      end 
+
+      true
     end
 end
