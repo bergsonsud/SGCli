@@ -48,5 +48,7 @@
 </div>
 
 <div class="pull-right">
+  <% if @customers.size >0 %>
     <%= will_paginate @customers, renderer: BootstrapPagination::Rails %>
+  <% end %>
 </div>           

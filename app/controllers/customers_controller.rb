@@ -4,10 +4,9 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    if !valid_params?
-      puts "entrou aqui"
-      #definir as varivais para renderizar a view html
-
+    if !valid_params?      
+      @search = Customer.search(params[:q])
+      @customers = []
       return
     end
 
@@ -23,7 +22,7 @@ class CustomersController < ApplicationController
     if type_search != 'razao' && type_search.present?
       @search = @search.where(type_search+' =?',search).all 
     end
-    @search = @search.where("razao like ?", "%"+search+"%") if type_search == 'razao'
+    @search = @search.where("razao ILIKE ?", "%"+search+"%") if type_search == 'razao'
 
     @search = @search.order(:razao).search(params[:q])
     @customers = @search.result.paginate( :per_page => @per_page, :page => params[:page])

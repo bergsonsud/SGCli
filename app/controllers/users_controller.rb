@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       end
     end
     sign_in(@current_user)
-     puts "############################################3########"
+    
   end
 
   	def update

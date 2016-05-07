@@ -11,6 +11,7 @@
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">Login</h3>
 			 	</div>
+			 	<br>
 			  	<div class="panel-body">
 			    	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                     <fieldset>
@@ -21,12 +22,7 @@
 			    			
 			    			<%= f.password_field :password, :class =>"form-control",:placeholder=>"senha",autocomplete: "off" %>
 			    		</div>
-			    		  <% if devise_mapping.rememberable? -%>
-						    <div class="field">
-						      <%= f.check_box :remember_me %>
-						      manter concectado
-						    </div>
-						  <% end -%>
+			    		  
 
 				  <div class="actions">
 				    <%= f.submit "Login", :class =>"btn btn-lg btn-success btn-block" %>
