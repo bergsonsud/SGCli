@@ -20,14 +20,17 @@
       <th><label class="section"><%= sort_link @search, :cnpj, "CNPJ" %></label></th>
       <th><label class="section"><%= sort_link @search, :cei, "CEI" %></label></th>
       <th><label class="section"><%= sort_link @search, :cgf, "CGF" %></label></th>
-        
-      <th><label class="section">Honorarios</label></th>
+
+      <% if current_user.admin? %>
+        <th><label class="section">Honorarios</label></th>
+      <% end %>
+
       <th><label class="section">Cliente Desde</label></th>
       <th colspan="3"><label class="section">Ação</label></th>
     </tr>
     </thead>
     <tbody id="customers">
-    <%= render @customers %>
+      <%= render @customers %>
     </tbody>
   </table>
 

@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController  
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy, :switch]
+  before_action :prepare_customers, only: [:index, :report_honorarios]
+  
 
   # GET /customers
   # GET /customers.json
@@ -8,27 +10,25 @@ class CustomersController < ApplicationController
       @search = Customer.search(params[:q])
       @customers = []
       return
+    end    
+  end
+
+  def switch
+    @customer.active = params[:active]
+    respond_to do |format|
+      if @customer.save
+       
+        format.json { head :no_content }
+        format.js
+        
+      else        
+        format.json { render json: @customer.errors.full_messages, status: :unprocessable_entity }
+      end
     end
 
-    type_search = params[:type_search]
-    search = params[:search]
-    params[:pagination] = Customer.per_page
+  end
 
-    @per_page = params[:per_page] || Customer.per_page || 5
-    @per_page = Customer.all.count if params[:per_page] == 'Todos'
-    
-    
-    @search = Customer.all    
-    if type_search != 'razao' && type_search.present?
-      @search = @search.where(type_search+' =?',search).all 
-    end
-    @search = @search.where("razao ILIKE ?", "%"+search+"%") if type_search == 'razao'
-
-    @search = @search.order(:razao).search(params[:q])
-    @customers = @search.result.paginate( :per_page => @per_page, :page => params[:page])
-    @total = @customers.count
-    @ppage = @per_page
-    #@customers = Customer.paginate( :per_page => @per_page, :page => params[:page]).all
+  def report_honorarios
   end
 
   # GET /customers/1
@@ -48,12 +48,8 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.json
   def create
-    @customer = Customer.new(customer_params)
-
-    
+    @customer = Customer.new(customer_params)    
     @customer.desde = DateTime.parse(Time.zone.now.to_s) if Date.parse(@customer.desde.to_s) == Date.current
-    
-
     respond_to do |format|
       if @customer.save
         #format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -98,7 +94,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:razao, :iss, :cnpj, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde)
+      params.require(:customer).permit(:razao, :iss, :cnpj, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde, :active)
     end
 
     def valid_params?
@@ -109,4 +105,29 @@ class CustomersController < ApplicationController
 
       true
     end
+
+  def prepare_customers    
+    type_search = params[:type_search]
+    search = params[:search]
+    params[:pagination] = Customer.per_page
+
+    @per_page = params[:per_page] || Customer.per_page || 5
+    @per_page = Customer.all.count if params[:per_page] == 'Todos'
+    
+
+    params[:active] = true if !current_user.admin?
+
+    
+    @search = Customer.where(active: params[:active])    
+    if type_search != 'razao' && type_search.present?
+      @search = @search.where(type_search+' =?',search).all 
+    end
+    @search = @search.where("razao ILIKE ?", "%"+search+"%") if type_search == 'razao'
+
+    @search = @search.order(:razao).search(params[:q])
+    @customers = @search.result.paginate( :per_page => @per_page, :page => params[:page])
+    @report_honorarios = @search.result.where('honorarios >0')
+    @total = @customers.count
+    @ppage = @per_page
+  end
 end

@@ -6,11 +6,13 @@
 	<td><label class="fields-show-view"><%= customer.cei %></label></td>
 	<td><label class="fields-show-view"><%= customer.cgf %></label></td>
 	
-	<td>	
-		<label class="fields-show-view">
-			<%= number_to_percentage(customer.honorarios, precision: 3) if customer.honorarios.present? %>
-		</label>
-	</td>
+	<% if current_user.admin? %>
+    	<td>	
+			<label class="fields-show-view">
+				<%= number_to_percentage(customer.honorarios, precision: 3) if customer.honorarios.present? %>
+			</label>
+		</td>
+	<% end %>
 	<td>
 		<label class="fields-show-view">
 			<%= customer.desde.strftime("%d/%m/%Y") if customer.desde.present?%></label>
@@ -20,14 +22,29 @@
 			<%= link_to 'Exibir', customer, remote: true,class: "btn btn-sm btn-default" %>
 		</label>	
 	</td>
-	<td>
-		<label class="fields-show-button">
-			<%= link_to 'Editar', edit_customer_path(customer), remote: true, :class => 'btn btn-sm btn-primary' %>
-			</label>
-	</td>
-	<td>
-		<label class="fields-show-button">
-			<%= link_to 'Excluir', customer, remote: true, :method => :delete, data: {confirm: "Excluir cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-danger' %>
-			</label>
-	</td>
+	<% if current_user.admin? %>
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Editar', edit_customer_path(customer), remote: true, :class => 'btn btn-sm btn-primary' %>
+				</label>
+		</td>
+<% if customer.active? %>		
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Inativar', switch_customer_path(customer.id,:active => false), remote: true, data: {confirm: "Inativar Cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-info' %>
+				</label>
+		</td>
+<% else %>
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Ativar', switch_customer_path(customer.id,:active => true), remote: true, data: {confirm: "Ativar Cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-info' %>
+				</label>
+		</td>
+<% end %>
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Excluir', customer, remote: true, :method => :delete, data: {confirm: "Excluir cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-danger' %>
+				</label>
+		</td>
+	<% end %>
 </tr>

@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
+  
   root 'customers#index'  
   devise_for :users
   resources :users#, :only => [:index,:show,:edit,]  
-  resources :customers
+  resources :customers do
+    collection do
+      get 'report_honorarios'      
+    end
 
+    member do
+      get 'switch'
+    end
+  end
+  #get 'config/index'
+  get 'config', to: 'config#index'
+  
 #  match '*path', to: redirect('/'), via: :all
   
   # The priority is based upon order of creation: first created -> highest priority.

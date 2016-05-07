@@ -41,7 +41,7 @@ class Customer < ActiveRecord::Base
 	end
 
 	def get_cnpj
-		cnpj.sub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "\\1.\\2.\\3/\\4-\\2") if cnpj.present?# ==> 69.103.604/0001-60
+		cnpj.sub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "\\1.\\2.\\3/\\4-\\5") if cnpj.present?# ==> 69.103.604/0001-60
 	end
 
 end

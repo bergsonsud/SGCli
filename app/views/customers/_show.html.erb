@@ -37,6 +37,7 @@
 
 <table class="table table-bordered table-striped table-sm">
 	
+<% if current_user.admin? %>
 	<th class="th-field">Código acesso</th>
 	<th class="th-field">% honorários</th>
 	<tr>
@@ -51,7 +52,16 @@
 			</label>
 		</td>
 	</tr>
-	
+<% else %>
+	<th class="th-field" colspan="2">Código acesso</th>	
+	<tr>
+		<td colspan="2">
+			<label class="fields-show-view">
+				<%= @customer.cod if @customer.cod.present? %>
+			</label>
+		</td>
+	</tr>
+<% end %>	
 	<th class="th-field">CNPJ</th>
 	<th class="th-field">ISS</th>
 	<tr>
