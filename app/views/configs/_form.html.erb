@@ -1,0 +1,18 @@
+<%= form_for(@config, remote: true, :html => { :role => "form" }) do |f| %>
+<div id="error_explanation" >
+</div>
+<h2 class="section">Configurações</h2>
+
+
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_field :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :valor %><br>
+    <%= f.text_field :valor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
