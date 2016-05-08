@@ -29,6 +29,8 @@ class CustomersController < ApplicationController
   end
 
   def report_honorarios
+    @index = Config.find_by_parametro("SGVRELHO").valor.to_f
+    @index = params[:index].to_f if params[:index].present?
   end
 
   # GET /customers/1

@@ -42,11 +42,10 @@ class ConfigsController < ApplicationController
   def update
     respond_to do |format|
       if @config.update(config_params)
-        format.html { redirect_to @config, notice: 'Config was successfully updated.' }
-        format.json { render :show, status: :ok, location: @config }
+        format.json { head :no_content }
+        format.js
       else
-        format.html { render :edit }
-        format.json { render json: @config.errors, status: :unprocessable_entity }
+        format.json { render json: @config.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end

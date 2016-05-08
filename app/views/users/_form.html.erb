@@ -11,7 +11,7 @@
 <label for="admin">Administrador</label><br />	
 <%= f.check_box :admin,:disabled => @user.id == current_user.id %>
 <br>
-
+<br>
   <div class="actions">
     <%= f.submit "Atualizar", :class=>"btn btn-info" %>
   </div>
