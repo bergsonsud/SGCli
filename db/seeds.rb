@@ -1,5 +1,5 @@
-﻿Config.create! parametro: "SGEMPNAM", descricao: "Nome da empresa", valor:"SGCli"
-Config.create! parametro: "SGVRELHO",descricao: "Valor utilizado no relatório de honorários", valor:"880" #valor salario minimo atual
+﻿Setting.create! parametro: "SGEMPNAM", descricao: "Nome da empresa", valor:"SGCli"
+Setting.create! parametro: "SGVRELHO",descricao: "Valor utilizado no relatório de honorários", valor:"880" #valor salario minimo atual
 
 razoes = ["Kamyla","Laura","Amanda","Alana"]
 

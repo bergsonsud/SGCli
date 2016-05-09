@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507211626) do
+ActiveRecord::Schema.define(version: 20160509164419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "configs", force: :cascade do |t|
-    t.string   "parametro"
-    t.string   "descricao"
-    t.string   "valor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "razao"
@@ -52,6 +44,14 @@ ActiveRecord::Schema.define(version: 20160507211626) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.boolean  "active",          default: true
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "parametro"
+    t.string   "descricao"
+    t.string   "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

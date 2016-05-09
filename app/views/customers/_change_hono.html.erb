@@ -10,7 +10,7 @@
   </div>
 
     <% if params[:index].present? %>
-      <%= link_to(report_honorarios_customers_path) do %>
+      <%= link_to report_honorarios_customers_path(:active => true) do %>
         <span class="glyphicon glyphicon-remove"></span>      
     <% end %>
 

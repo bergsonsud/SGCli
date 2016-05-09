@@ -17,7 +17,7 @@
     <% if !current_user.admin? %>
         <ul class="nav navbar-nav">
           <li>
-            <%= link_to "Clientes",customers_path(:active => true) %>
+            <%= link_to "Clientes",customers_path(:active => true) %>           
           </li>
         </ul>
     <% else %>
@@ -52,6 +52,7 @@
           <% if current_user.admin? %>
             <li class="dropdown-header">Administrar Usuários</li>
              <li> <%= link_to "Usuários", users_path %></li>
+             <li><%= link_to "Configurações",settings_path %></li>
              <li role="separator" class="divider"></li>
           <% end %>
           

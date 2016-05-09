@@ -29,8 +29,17 @@ class CustomersController < ApplicationController
   end
 
   def report_honorarios
-    @index = Config.find_by_parametro("SGVRELHO").valor.to_f
+    @index = Setting.find_by_parametro("SGVRELHO").valor.gsub(',', '.').to_f
     @index = params[:index].to_f if params[:index].present?
+    @total = calc_total(@customers,@index)
+  end
+
+  def calc_total(customers,index)
+    total = 0
+    customers.each do |c|
+      total = total + (c.honorarios.to_f/100) * index
+    end
+    return total
   end
 
   # GET /customers/1

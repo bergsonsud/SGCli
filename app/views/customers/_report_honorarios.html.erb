@@ -13,7 +13,7 @@
 	<% end %>
 	<td>
 		<label class="fields-show-view">
-			<%= (customer.honorarios/100) * @index%>
+			<%= number_to_currency (customer.honorarios/100) * @index%>
 		</label>
 		</td>
 	

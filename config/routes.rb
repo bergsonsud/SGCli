@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :settings
   resources :configs
   root 'customers#index'  
   devise_for :users

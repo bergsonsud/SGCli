@@ -1,15 +1,23 @@
 <div class="container">
 
-  <h1 class="section">Relat</h1>
+  <h1 class="section">Relatório Honorários</h1>
 <div class="row no-more-tables">
 
-<%= render 'change_hono' %>
+
   <div class="new-customer"></div>
 
-  <div class="col-sm-2 navbar-form pull-right">
-      <%= render "search_honorarios" %>
+  <div class="row">
+  <div class="col-sm-4">
+    <%= render 'change_hono' %>
+  </div>
+  
+    <div class="col-sm-2 navbar-form pull-right">    
+        <%= render "search_honorarios" %>
+    </div>
   </div>
 </div>
+<strong>Indexador <%= number_to_currency @index %></strong><br>
+
   <table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -23,6 +31,13 @@
     </thead>
     <tbody id="customers">
       <%= render "customers" %>
+    </tbody>
+    <tbody>
+      <th colspan="5"></th>      
+    </tbody>
+    <tbody>
+      <th colspan="4">TOTAL</th>      
+      <th><strong><%= number_to_currency @total %></strong></th>      
     </tbody>
   </table>
 
