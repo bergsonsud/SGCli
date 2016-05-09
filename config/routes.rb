@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
   resources :settings
-  resources :configs
   root 'customers#index'  
   devise_for :users
   resources :users#, :only => [:index,:show,:edit,]  
@@ -13,9 +12,9 @@ Rails.application.routes.draw do
     member do
       get 'switch'
     end
+    
   end
-  #get 'config/index'
-  get 'config', to: 'config#index'
+  
   
 #  match '*path', to: redirect('/'), via: :all
   
