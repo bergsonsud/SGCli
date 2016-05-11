@@ -47,6 +47,29 @@ class CustomersController < ApplicationController
   def show
   end
 
+
+   def receipt
+
+    respond_to do |format|
+      format.html
+
+      format.pdf do
+        pdf = Prawn::Document.new
+ pdf.bounding_box([200,450], :width => 200, :height => 250) do
+   pdf.stroke_bounds   # Show the containing bounding box
+   pdf.bounding_box([50,200], :width => 50, :height => 50) do
+     # a 50x50 bounding box that starts 50 pixels left and 50 pixels down
+     # the parent bounding box.
+     pdf.stroke_bounds
+   end
+ end
+    
+        send_data pdf.render, filename: "x.pdf", type: "application/pdf", disposition: 'inline'
+      end
+    end  
+   end
+
+
   # GET /customers/new
   def new
     @customer = Customer.new    

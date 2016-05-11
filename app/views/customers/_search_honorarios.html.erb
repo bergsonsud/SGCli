@@ -1,6 +1,7 @@
-<%= form_tag(report_honorarios_customers_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+<%= form_tag report_honorarios_customers_path, :method => "get", id: "search-form", class: "navbar-form" do %>
   <div class="input-group">
   <%= hidden_field_tag(:active,params[:active]) %>
+  <%= hidden_field_tag(:index,params[:index]) %>
       <%= select_tag "type_search", options_for_select([
         ['Código', 'id'],
         ['Razão', 'razao'],
@@ -19,7 +20,7 @@
   </div>
 
     <% if params[:search].present? %>
-      <%= link_to(customers_path) do %>
+      <%= link_to report_honorarios_customers_path(:active => params[:active],:index => params[:index]) do %>
         <span class="glyphicon glyphicon-remove"></span>      
     <% end %>
 

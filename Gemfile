@@ -40,6 +40,7 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
 
 gem 'brazilian-rails'
 gem 'devise'
+gem 'prawn'
 #gem 'responders', '~> 2.0'
 
 # Use ActiveModel has_secure_password

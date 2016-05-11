@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   
+  root 'home#index'
+
   resources :settings
-  root 'customers#index'  
+  
   devise_for :users
   resources :users#, :only => [:index,:show,:edit,]  
   resources :customers do
     collection do
       get 'report_honorarios'      
+      get 'receipt'
     end
 
     member do

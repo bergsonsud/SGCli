@@ -42,6 +42,12 @@
             <%= link_to "Relatório Honorários",report_honorarios_customers_path(:active => true) %>
           </li>
         </ul>
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to "PDF", {:controller=>"customers",:action => 'receipt', :format => :pdf},:target => "  _blank" %>
+          </li>
+        </ul>
+        
     <% end %>        
 
       <ul class="nav navbar-nav navbar-right">
