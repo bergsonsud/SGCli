@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController  
   before_action :set_customer, only: [:show, :edit, :update, :destroy, :switch]
   before_action :prepare_customers, only: [:index, :report_honorarios]
+  before_action :verify_user_admin, only: [:report_honorarios,:receipt]
   
 
   # GET /customers
@@ -48,27 +49,64 @@ class CustomersController < ApplicationController
   end
 
 
-   def receipt
-
-    respond_to do |format|
-      format.html
-
-      format.pdf do
-        pdf = Prawn::Document.new
- pdf.bounding_box([200,450], :width => 200, :height => 250) do
-   pdf.stroke_bounds   # Show the containing bounding box
-   pdf.bounding_box([50,200], :width => 50, :height => 50) do
-     # a 50x50 bounding box that starts 50 pixels left and 50 pixels down
-     # the parent bounding box.
-     pdf.stroke_bounds
-   end
- end
+   def receipt    
     
-        send_data pdf.render, filename: "x.pdf", type: "application/pdf", disposition: 'inline'
-      end
-    end  
+    customers = Customer.all 
+      respond_to do |format|
+        #format.html
+            format.pdf do            
+              pdf = make_pages customers
+              send_data pdf.render, filename: "x.pdf", type: "application/pdf", disposition: 'inline'
+            end
+      end 
+    
    end
 
+
+   def def_texto_recibo c,quantia      
+      extenso = ExtensoReal.por_extenso_em_reais(quantia)
+      quantia = ActionController::Base.helpers.number_to_currency(quantia)
+      return "RECEBI de "+c.razao+", a quantia de R$ "+quantia+" ("+extenso+"), referente a (HISTORICO EDITAVEL – 500 CARACTERES), Pelo que firmo o presente recibo de quitação do valor recebido."
+   end
+
+  def make_pages customers    
+    c_total = Customer.all.count    
+    k = 0
+    pdf = Prawn::Document.new  
+        customers.each do |c|
+        k+=1        
+            aux = k % 2 == 0 ? 330 : 0
+            pdf.bounding_box([0,730-aux], :width => 538, :height => 300) do #740 / 2
+                pdf.stroke_bounds   
+                pdf.text_box "FRANZÉ TELES CONTABILIDADE",:width => 538,:align => :center,:at => [0,285],:size => 28,:styles => :bold
+                pdf.fill_color "848484" 
+                pdf.text_box "Rua 17, 51 Novo Oriente - Maracanaú-CE CEP 61.921-180 - (85) 98893-0581 / 3467-7074 / 3467-9952",
+                :width => 538,:align => :center,:at => [0,260],                      
+                :size => 9
+                pdf.fill_color "00000" 
+                
+                pdf.bounding_box([415,220], :width => 100, :height => 30) do #740 / 2
+                    pdf.stroke_bounds 
+                    pdf.text_box "Nº",:at => [4,19]
+                end
+
+                #image water mark
+                pdf.transparent(0.3) do
+                    pdf.image "#{Rails.root}/app/assets/images/contabilidade.jpg",:at =>[145, 260],:scale => 0.60
+                end
+                          
+                #body
+                pdf.text_box "RECIBO",:width => 538,:align => :center,:at => [0,205],:size => 18,:styles => :bold
+                pdf.text_box def_texto_recibo(c,233.26),:width => 500,:align => :justify,:at => [18,165],:size => 10,:styles => :bold,:leading => 5
+                pdf.text_box "Maracanaú, ____/ ____/ ______",:at => [350,45],:size => 10,:styles => :bold
+            
+            end
+              pdf.start_new_page if k<c_total && k%2 == 0
+               
+            end
+              
+    return pdf
+  end
 
   # GET /customers/new
   def new

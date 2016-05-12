@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
 	def verify_user_admin
-	  if !current_user.admin?
+	  if !current_user.admin?		  	  		
 		  redirect_to root_path
 		end
 	end
