@@ -48,8 +48,14 @@ class CustomersController < ApplicationController
   def show
   end
 
+  def prepare_receipt    
+  end
 
-   def receipt    
+  def make_receipt
+    redirect_to receipt_customers_path
+  end
+
+   def receipt
     
     customers = Customer.all 
       respond_to do |format|

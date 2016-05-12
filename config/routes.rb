@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :customers do
     collection do
       get 'report_honorarios'      
+      get 'prepare_receipt'
+      post 'prepare_receipt'
+      post 'make_receipt'
       get 'receipt'
     end
 

@@ -57,6 +57,9 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">             
             <li>
+              <%= link_to 'Exibir', prepare_receipt_customers_path, remote: true %>
+            </li>          
+            <li>
               <%= link_to "Gerar Recibos PDF", {:controller=>"customers",:action => 'receipt', :format => :pdf},:target => "  _blank" %>
             </li>
           </ul>
