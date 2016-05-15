@@ -178,6 +178,16 @@
   </div>  
 </div>
 <br>
+
+<div class="row">
+  <div class="col-md-4">
+    <label class="field">Grupo</label>     
+      <%= f.collection_select(:group_id, Group.all, :id, :name, {:prompt=>''}, {:class=>'form-control input-md'})%>    
+  </div>  
+</div>
+<br>
+
+
 <div class="form-group">
   <%= f.submit  @customer.new_record? ? "Criar" : "Atualizar", :class => "btn btn-primary" %>
 </div>

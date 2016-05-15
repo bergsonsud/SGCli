@@ -1,7 +1,6 @@
 class Customer < ActiveRecord::Base
-	self.per_page = 5
-	
-	
+	belongs_to :group
+	self.per_page = 5	
 	
 	validates :razao, presence: true, uniqueness: true,:case_sensitive => false
 	# validates :municipio,:estado, presence: true

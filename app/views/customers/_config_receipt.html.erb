@@ -1,9 +1,34 @@
-<%= form_for '', :url => make_receipt_customers_path, :method => :post do |f| %>
+
+
+<%= form_for '',:html => {:target=>'new_section_frame'}, :url => receipt_customers_path(format: :pdf), :method => :post do |f| %>
+
+
+
+
+
+
+
 
  <div class="row">
 	<div class="col-md-5">    
-	 <label class="field">Nome</label>
-	 <%= text_field_tag(:texto) %>	
+	 <label class="field">Tipo</label>
+	<%= radio_button_tag("tipo", "Todos",checked = true, options = {} ) %> Todos	 
+	<%= radio_button_tag("tipo", "Grupo", ) %> Grupo 	
+	<%= radio_button_tag("tipo", "Individual", ) %>	Individual
+	
+	</div>
+</div>
+<br>
+
+ <div id="groups"></div>
+
+ <div id="one"></div><br>
+
+
+ <div class="row">
+	<div class="col-md-5">    
+	 <label class="field">Descrição</label>
+	 <%= text_area_tag(:texto,nil,:rows => 10, :cols => 100)%>	
 	</div>
 </div>
 <br>
@@ -12,3 +37,5 @@
     <%= f.submit "Criar", :class=>"btn btn-success" %>
   </div>
 <% end %>
+
+

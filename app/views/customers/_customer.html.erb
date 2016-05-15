@@ -1,5 +1,6 @@
 <tr id="customer_<%= customer.id %>">
-	<td><label class="fields-show-view"><%= customer.id %></label></td>
+	<td><label class="fields-show-view"><%= customer.id %></label></td>		
+	<td><label class="fields-show-view"><%= customer.group.name %></label></td>	
 	<td><label class="fields-show-view"><%= customer.razao %></label></td>
 	<td><label class="fields-show-view"><%= customer.iss %></label></td>
 	<td><label class="fields-show-view"><%= customer.get_cnpj %></label></td>
@@ -31,13 +32,13 @@
 <% if customer.active? %>		
 		<td>
 			<label class="fields-show-button">
-				<%= link_to 'Inativar', switch_customer_path(customer.id,:active => false), remote: true, data: {confirm: "Inativar Cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-info' %>
+				<%= link_to 'Inativar', switch_customer_path(customer.id,:active => false), remote: true, data: {confirm: "Inativar Cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-switch' %>
 				</label>
 		</td>
 <% else %>
 		<td>
 			<label class="fields-show-button">
-				<%= link_to 'Ativar', switch_customer_path(customer.id,:active => true), remote: true, data: {confirm: "Ativar Cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-info' %>
+				<%= link_to 'Ativar', switch_customer_path(customer.id,:active => true), remote: true, data: {confirm: "Ativar Cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-success' %>
 				</label>
 		</td>
 <% end %>

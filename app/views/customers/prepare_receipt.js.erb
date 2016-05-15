@@ -1,3 +1,27 @@
 $('#dialog h3').html("<span class='section-title'>Configurar recibo</span>");
 $('.modal-body').html('<%= j render("config_receipt") %>');
 $('#dialog').modal("show");
+
+
+document.getElementById("tipo_Grupo").onclick = function() {
+	$('#groups').html('<%= j render("composer/receipt/groups") %>');
+	$('#one').html('');
+};
+
+
+document.getElementById("tipo_Todos").onclick = function() {
+	$('#groups').html('');
+	$('#one').html('');
+};
+
+document.getElementById("tipo_Individual").onclick = function() {
+	$('#groups').html('');
+	$('#one').html('<%= j render("composer/receipt/one") %>');
+};
+
+
+
+
+  $('#razao').bind('railsAutocomplete.select', function(event, data){
+  	
+  });

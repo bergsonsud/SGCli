@@ -1,10 +1,13 @@
 ﻿Setting.create! parametro: "SGEMPNAM", descricao: "Nome da empresa", valor:"SGCli"
 Setting.create! parametro: "SGVRELHO",descricao: "Valor utilizado no relatório de honorários", valor:"880" #valor salario minimo atual
 
+Group.create! name: "A"
+Group.create! name: "B"
+
 razoes = ["Kamyla","Laura","Amanda","Alana"]
 
 razoes.each do |razao|
-	Customer.create! razao:razao	
+	Customer.create! razao:razao,group_id: 1	
 end
 
 User.create! name: "admin",email: "admin@gmail.com", password:"123454321", admin:true

@@ -1,18 +1,24 @@
 Rails.application.routes.draw do
   
+  resources :groups
   root 'home#index'
 
   resources :settings
   
   devise_for :users
-  resources :users#, :only => [:index,:show,:edit,]  
+  resources :users#, :only => [:index,:show,:edit,] 
+  
+  
+
   resources :customers do
+    get :autocomplete_customer_razao, :on => :collection
     collection do
       get 'report_honorarios'      
       get 'prepare_receipt'
       post 'prepare_receipt'
       post 'make_receipt'
       get 'receipt'
+      post 'receipt'
     end
 
     member do

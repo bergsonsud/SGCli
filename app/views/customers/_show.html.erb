@@ -1,4 +1,5 @@
 <h3 class="section"><%= @customer.razao %></h3>
+<h5 class="section">Grupo: <%= @customer.group.name %></h5>
 
 <% if @customer.logradouro.present? or @customer.municipio.present? %>
 	<i class='glyphicon glyphicon-home'></i>
