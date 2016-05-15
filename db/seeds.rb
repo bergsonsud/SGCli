@@ -7,7 +7,7 @@ Group.create! name: "B"
 razoes = ["Kamyla","Laura","Amanda","Alana"]
 
 razoes.each do |razao|
-	Customer.create! razao:razao,group_id: 1	
+	Customer.create! razao:razao,group_id: 1, honorarios:10	
 end
 
 User.create! name: "admin",email: "admin@gmail.com", password:"123454321", admin:true

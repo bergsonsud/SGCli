@@ -153,9 +153,9 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)    
-    @customer.desde = DateTime.parse(Time.zone.now.to_s) if Date.parse(@customer.desde.to_s) == Date.current
     respond_to do |format|
       if @customer.save        
+    @customer.desde = DateTime.parse(Time.zone.now.to_s) if Date.parse(@customer.desde.to_s) == Date.current
         format.json { head :no_content }
         format.js        
       else        
@@ -196,7 +196,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:razao, :iss, :cnpj, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde, :active,:group_id)
+      params.require(:customer).permit(:id_emp,:razao, :iss, :cnpj, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde, :active,:group_id)
     end
 
     def valid_params?
@@ -221,10 +221,10 @@ class CustomersController < ApplicationController
 
     
     @search = Customer.where(active: params[:active]).order('honorarios')    
-    if type_search != 'razao' && type_search.present?
+    if type_search == 'id_emp' && type_search.present?
       @search = @search.where(type_search+' =?',search).all 
     end
-    @search = @search.where("razao ILIKE ?", "%"+search+"%") if type_search == 'razao'
+    @search = @search.where(type_search+" ILIKE ?", "%"+search+"%") if type_search != 'id_emp' && type_search.present?
 
     @search = @search.order(:razao).search(params[:q])
     @customers = @search.result.paginate( :per_page => @per_page, :page => params[:page])

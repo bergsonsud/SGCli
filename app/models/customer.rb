@@ -23,7 +23,20 @@ class Customer < ActiveRecord::Base
 		end
 	end
 
-	def phone_numbers
+	def contatos
+		if contato.present? and contato2.present?
+			"- (#{contato}/#{contato2})"
+		elsif contato.present? and !contato2.present?
+			"- (#{contato})"
+		elsif !contato.present? and contato2.present?
+			"- (#{contato2})"
+		else
+			""
+		end	
+			
+	end
+
+		def phone_numbers
 		"#{telefone} #{telefone2} #{telefone3}"
 	end
 

@@ -1,7 +1,9 @@
 <%= form_tag(customers_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+  
+<%= hidden_field_tag :active,params[:active] %>
   <div class="input-group">
       <%= select_tag "type_search", options_for_select([
-        ['Código', 'id'],
+        ['Código Cliente', 'id_emp'],
         ['Razão', 'razao'],
         ['ISS', 'iss'],
         ['CNPJ', 'cnpj'],
@@ -18,7 +20,7 @@
   </div>
 
     <% if params[:search].present? %>
-      <%= link_to(customers_path) do %>
+      <%= link_to customers_path(:active=>params[:active]) do %>
         <span class="glyphicon glyphicon-remove"></span>      
     <% end %>
 
