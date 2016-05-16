@@ -5,15 +5,18 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body>
-    <div class="container bordered">
+    <div class="container">
+      <div class="container-fluid">
       <% if controller_name != 'sessions' && current_user.present? %>
         <%= render 'composer/menu' %>
       <% end %>
       <div id="modal-holder"></div>
       <%= render 'composer/dialog' %>
       <%= yield %>
+      </div>
     </div>
    <%= render 'composer/footer' %> 
     

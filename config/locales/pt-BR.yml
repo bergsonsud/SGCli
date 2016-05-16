@@ -127,16 +127,42 @@ pt-BR:
           password_confirmation: "Confirmação de Senha"
           current_password: "Senha atual"
         customer:
+          id_emp: "Código Cliente"
           razao: "Razão Social"
           municipio: "Município"
           estado: "Estado"
           iss: "ISS"
-          cnpj: "CNPJ"
+          cnpj: "CNPJ" 
+          cei: "CEI"       
+          cgf: "CGF"
+          cod: "Código acesso"
+          logradouro: "Logradouro"
+          numero: "Número"
+          bairro: "Bairro"
+          complemento: "Complemento"
+          municipio: "Município"
+          estado: "Estado"
+          telefone: "Telefone"
+          telefone2: "Telefone 2"
+          telefone3: "Telefone 3"
+          celular: "Celular"
+          celular2: "Celular 2"          
+          email: "Email"
+          email2: "Email 2"
+          contato: "Contato"
+          contato2: "Contato 2"
+          endereco_coleta: "Endereço de Coleta"
+          honorarios: "Honorários"
+          cep: "CEP"          
+          group_id: "Grupo"
         
     models:
       customer:
         one: "Cliente"
-        other: "Clientes"
+        other: "Clientes"            
+      group:
+        one: "Grupo"
+        other: "Grupos"
 
  
   number:

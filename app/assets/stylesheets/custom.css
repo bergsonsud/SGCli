@@ -42,7 +42,7 @@ footer ul li a {
 
 .ui-autocomplete {  
 
-  z-index: 99999999;  
+  z-index: 99999998;  
   min-width: 160px;
   width: 160px;
   padding: 4px 0;
@@ -93,4 +93,9 @@ footer ul li a {
 .btn-switch {
   background-color: #e6b800;
   color: #fff;
+}
+
+
+.ui-helper-hidden-accessible{
+ display: none;
 }

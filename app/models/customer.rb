@@ -3,6 +3,27 @@ class Customer < ActiveRecord::Base
 	self.per_page = 5	
 	
 	validates :razao, presence: true, uniqueness: true,:case_sensitive => false
+	
+	validates :id_emp,:iss,:cnpj,:cgf,:cei,:cod,:logradouro,:numero,:bairro,:municipio,:estado,:telefone,:celular,:email,:contato,:group_id,:id_emp,presence: true
+
+
+	validates :id_emp, numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 1..9 },if: 'id_emp.present?'
+	validates :iss, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 14 },if: 'iss.present?'
+	validates :cnpj, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 14 },if: 'cnpj.present?'
+	validates :cgf, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 14 },if: 'cgf.present?'
+	validates :cei, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 12 },if: 'cei.present?'
+	validates :cod, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 1..30 },if: 'cod.present?'
+	validates :telefone,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 8..9 },if: 'telefone.present?'
+	validates :telefone2,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 8..9 },if: 'telefone2.present?'
+	validates :telefone3,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 8..9 },if: 'telefone3.present?'
+	validates :celular,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 8..9 },if: 'celular.present?'
+	validates :celular2,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 8..9 },if: 'celular2.present?'
+	validates :cep, numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 8 },if: 'cep.present?'
+
+	validates :contato, :length => { :minimum => 3},if: 'contato.present?'
+	validates :contato2, :length => { :minimum => 3},if: 'contato2.present?'
+
+	
 	# validates :municipio,:estado, presence: true
 	# validates :cnpj,:iss,presence: true
 	# validates :cnpj,{length: { is: 14 },uniqueness: true, numericality: true,if: 'cnpj.present?'}
@@ -21,6 +42,10 @@ class Customer < ActiveRecord::Base
 		else
 			"#{logradouro}, #{numero} #{complemento} #{bairro}"
 		end
+	end
+
+	def get_cep
+		" - #{cep}" if cep.present?		
 	end
 
 	def contatos

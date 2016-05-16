@@ -2,20 +2,21 @@
 
 <%= form_for '',:html => {:target=>'new_section_frame'}, :url => receipt_customers_path(format: :pdf), :method => :post do |f| %>
 
-
-
-
-
-
-
-
  <div class="row">
 	<div class="col-md-5">    
-	 <label class="field">Tipo</label>
+	 <label class="field">Filtro</label>
 	<%= radio_button_tag("tipo", "Todos",checked = true, options = {} ) %> Todos	 
 	<%= radio_button_tag("tipo", "Grupo", ) %> Grupo 	
-	<%= radio_button_tag("tipo", "Individual", ) %>	Individual
-	
+	<%= radio_button_tag("tipo", "Individual", ) %>	Individual	
+	</div>
+</div>
+<br>
+
+ <div class="row">
+	<div class="col-md-4">    
+	 <label class="field">Ordenar</label>
+	<%= radio_button_tag("ordem", "id_emp",checked = true, options = {} ) %> Código Cliente
+	<%= radio_button_tag("ordem", "razao", ) %> Razão Social 		
 	</div>
 </div>
 <br>

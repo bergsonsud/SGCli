@@ -61,15 +61,16 @@ class CustomersController < ApplicationController
     valor = Setting.find_by_parametro("SGVRELHO").valor.gsub(',', '.').to_f
     tipo = params[:tipo]    
     individual = params[:individual]
+    ordem = params[:ordem]
 
     
 
     if tipo == 'Todos'
-      customers = Customer.where('active = true and honorarios>0').order('razao')
+      customers = Customer.where('active = true and honorarios>0').order(ordem)
     elsif tipo == 'Grupo'
-      customers = Customer.where('active = true and honorarios>0 and group_id = ?',params[:group][:group_id]).order('razao')
+      customers = Customer.where('active = true and honorarios>0 and group_id = ?',params[:group][:group_id]).order(ordem)
     else
-      customers = Customer.where('id =?',individual).order('razao')
+      customers = Customer.where('id =?',individual).order(ordem)
     end     
     
       respond_to do |format|        
@@ -196,7 +197,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:id_emp,:razao, :iss, :cnpj, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde, :active,:group_id)
+      params.require(:customer).permit(:id_emp,:razao, :iss, :cnpj, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde, :active,:group_id,:cep)
     end
 
     def valid_params?

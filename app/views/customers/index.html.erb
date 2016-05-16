@@ -11,16 +11,15 @@
       <%= render "search" %>
   </div>
 </div>
+
   <table class="table table-bordered table-striped">
     <thead>
     <tr>
       <th><label class="section"><%= sort_link @search, :id_emp, "Código Cliente" %></label></th>
       <th><label class="section"><%= sort_link @search, :group_id, "Grupo" %></label></th>
       <th class="col-xs-3"><label class="section"><%= sort_link @search, :razao, "Razão Social" %></label></th>
-      <th><label class="section"><%= sort_link @search, :iss, "ISS" %></label></th>
       <th><label class="section"><%= sort_link @search, :cnpj, "CNPJ" %></label></th>
-      <th><label class="section"><%= sort_link @search, :cei, "CEI" %></label></th>
-      <th><label class="section"><%= sort_link @search, :cgf, "CGF" %></label></th>
+      <th><label class="section"><%= sort_link @search, :iss, "ISS" %></label></th>     
 
       <% if current_user.admin? %>
         <th><label class="section">Honorarios</label></th>
@@ -56,3 +55,5 @@
     <%= will_paginate @customers, renderer: BootstrapPagination::Rails %>
   <% end %>
 </div>           
+
+

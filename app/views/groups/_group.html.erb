@@ -1,3 +1,29 @@
 <tr id="group_<%= group.id %>">
-	<td><label class="fields-show-view"><%= group.name %></label></td>	
+	<td>
+		<label class="fields-show-view"><%= group.name %></label>
+	</td>
+	<td>
+		<label class="fields-show-view"><%= group.customers.count %></label>
+	</td>	
+	
+	<td>
+		<% if !Group.isfree?(group.id)  %>
+			<label class="fields-show-button">
+				<%= link_to 'Exibir', group, remote: true,class: "btn btn-sm btn-default" %>
+			</label>
+		<% end %>
+		<label class="fields-show-button">
+			<%= link_to 'Editar', edit_group_path(group), remote: true, :class => 'btn btn-sm btn-primary' %>
+		</label>
+
+	<% if Group.isfree?(group.id)  %>		
+			<label class="fields-show-button">				
+					<%= link_to 'Excluir', group, remote: true, :method => :delete, data: {confirm: "Excluir Grupo: #{group.name} ?"}, :class => 'btn btn-sm btn-danger' %>
+			</label>
+		</td>
+	<% else %>
+		</td>
+	<% end %>	
+
+	
 </tr>

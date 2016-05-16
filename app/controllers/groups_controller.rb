@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = Group.order(:name)
   end
 
   # GET /groups/1
@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
         format.json { head :no_content }
         format.js        
       else        
-        format.json { render json: @customer.errors.full_messages, status: :unprocessable_entity }
+        format.json { render json: @group.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -41,11 +41,10 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
+        format.json { head :no_content }
+        format.js
       else
-        format.html { render :edit }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+        format.json { render json: @group.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -55,7 +54,7 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+      format.js      
       format.json { head :no_content }
     end
   end
