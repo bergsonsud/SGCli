@@ -2,7 +2,8 @@
 	<td><label class="fields-show-view"><%= customer.id_emp if customer.id_emp.present? %></label></td>		
 	<td><label class="fields-show-view"><%= customer.group.name %></label></td>	
 	<td><label class="fields-show-view"><%= customer.razao %></label></td>
-	<td><label class="fields-show-view"><%= customer.get_cnpj %></label></td>
+	<td><label class="fields-show-view"><%= customer.cpf %></label></td>
+	<td><label class="fields-show-view"><%= customer.cnpj %></label></td>
 	<td><label class="fields-show-view"><%= customer.iss %></label></td>
 		
 	<% if current_user.admin? %>
@@ -12,10 +13,7 @@
 			</label>
 		</td>
 	<% end %>
-	<td>
-		<label class="fields-show-view">
-			<%= customer.desde.strftime("%d/%m/%Y") if customer.desde.present?%></label>
-		</td>
+	
 	<td>
 		<label class="fields-show-button">
 			<%= link_to 'Exibir', customer, remote: true,class: "btn btn-sm btn-default" %>

@@ -132,6 +132,7 @@ pt-BR:
           municipio: "Município"
           estado: "Estado"
           iss: "ISS"
+          cpf: "CPF" 
           cnpj: "CNPJ" 
           cei: "CEI"       
           cgf: "CGF"
