@@ -10,3 +10,10 @@ p.breakhere {page-break-before: always}
 .report td {
    padding-left: 15px ;
 }
+
+hr.style-three {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+    width: 1000px;
+}

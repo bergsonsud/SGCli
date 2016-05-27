@@ -11,3 +11,9 @@ $('#dialog').modal("show");
 $('#dialog').on('shown.bs.modal', function () {
 	  $('.first_input').focus()
   })
+
+
+
+  $(function() {
+    $('#SGVRELHO').maskMoney({thousands:'', decimal:'.'});
+  })

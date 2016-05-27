@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController  
   before_action :set_customer, only: [:show, :edit, :update, :destroy, :switch]
   before_action :prepare_customers, only: [:index, :report_honorarios,:report,:print_report]
-  before_action :verify_user_admin, only: [:report_honorarios,:receipt,:report]  
+  before_action :verify_user_admin, only: [:report_honorarios,:receipt]  
 
 
   # GET /customers
@@ -37,6 +37,7 @@ class CustomersController < ApplicationController
       `sass vendor/assets/stylesheets/custom.scss tmp/custom.css`
       kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/bootstrap.min.css"
       kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
+      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
       pdf = kit.to_pdf
       #send_data(pdf)
       send_data pdf, :filename => Time.zone.today.to_s+'.pdf',
