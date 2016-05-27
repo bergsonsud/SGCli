@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController  
   before_action :set_customer, only: [:show, :edit, :update, :destroy, :switch]
-  before_action :prepare_customers, only: [:index, :report_honorarios]
-  before_action :verify_user_admin, only: [:report_honorarios,:receipt]  
+  before_action :prepare_customers, only: [:index, :report_honorarios,:report,:print_report]
+  before_action :verify_user_admin, only: [:report_honorarios,:receipt,:report]  
 
 
   # GET /customers
@@ -27,6 +27,25 @@ class CustomersController < ApplicationController
       end
     end
 
+  end
+
+  def print_report
+      #@customers = Customer.where(:active => true)
+      html = render_to_string(:action => 'show', :layout => false)
+      kit = PDFKit.new(html, page_size: 'A4',:footer_center => DateTime.parse(Time.zone.now.to_s).strftime("%d/%m/%Y %H:%M"))
+      `sass vendor/assets/stylesheets/bootstrap.scss tmp/bootstrap.css`
+      `sass vendor/assets/stylesheets/custom.scss tmp/custom.css`
+      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/bootstrap.min.css"
+      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
+      pdf = kit.to_pdf
+      #send_data(pdf)
+      send_data pdf, :filename => Time.zone.today.to_s+'.pdf',
+                :type => "application/pdf",
+                :disposition  => "inline",
+                :data => @customers
+  end
+
+  def report
   end
 
   def report_honorarios
@@ -62,8 +81,9 @@ class CustomersController < ApplicationController
     tipo = params[:tipo]    
     individual = params[:individual]
     ordem = params[:ordem]
+    total_setado = params[:total]
 
-    
+       
 
     if tipo == 'Todos'
       customers = Customer.where('active = true and honorarios>0').order(ordem)
@@ -76,7 +96,7 @@ class CustomersController < ApplicationController
       respond_to do |format|        
             format.js
             format.pdf do            
-              pdf = make_pages customers,params[:texto],valor
+              pdf = make_pages customers,params[:texto],valor,total_setado
               send_data pdf.render, filename: Time.zone.today.to_s, type: "application/pdf", disposition: 'inline'
             end
       end 
@@ -84,13 +104,20 @@ class CustomersController < ApplicationController
    end
 
 
-   def def_texto_recibo c,index,texto            
-      extenso = ExtensoReal.por_extenso_em_reais((c.honorarios.to_f/100) * index)
-      index = ActionController::Base.helpers.number_to_currency((c.honorarios.to_f/100) * index)
+   def def_texto_recibo c,index,texto,total_setado  
+
+      if total_setado.present?
+        
+        extenso = ExtensoReal.por_extenso_em_reais(total_setado.to_f)
+        index = ActionController::Base.helpers.number_to_currency(total_setado.to_f)
+      else
+        extenso = ExtensoReal.por_extenso_em_reais((c.honorarios.to_f/100) * index)
+        index = ActionController::Base.helpers.number_to_currency((c.honorarios.to_f/100) * index)
+      end
       return "Recebi de "+c.razao+", a quantia de R$ "+index+" ("+extenso+"), referente a "+texto+", Pelo que firmo o presente recibo de quitação do valor recebido."
    end
 
-  def make_pages customers,texto,valor
+  def make_pages customers,texto,valor,total_setado
     c_total = customers.size
     k = 0
     pdf = Prawn::Document.new  
@@ -118,7 +145,7 @@ class CustomersController < ApplicationController
                           
                 #body
                 pdf.text_box "RECIBO",:width => 538,:align => :center,:at => [0,205],:size => 18,:styles => :bold
-                pdf.text_box def_texto_recibo(c,valor,texto),:width => 500,:align => :justify,:at => [18,165],:size => 10,:styles => :bold,:leading => 5
+                pdf.text_box def_texto_recibo(c,valor,texto,total_setado),:width => 500,:align => :justify,:at => [18,165],:size => 10,:styles => :bold,:leading => 5
                 pdf.text_box "Maracanaú, ____/ ____/ ______",:at => [350,45],:size => 10,:styles => :bold
             
             end
@@ -205,13 +232,14 @@ class CustomersController < ApplicationController
         id = params[:search]
         return false if id.to_i == 0 
       end 
-
-      true
+      return true
     end
 
   def prepare_customers    
     type_search = params[:type_search]
     search = params[:search]
+    sort = params[:sort]
+    order = params[:order]
     params[:pagination] = Customer.per_page
 
     @per_page = params[:per_page] || Customer.per_page || 5
@@ -220,14 +248,25 @@ class CustomersController < ApplicationController
 
     params[:active] = true if !current_user.admin?
 
+   if sort.present? 
+    if params[:order] == 'asc'
+      sort_order = sort+" ASC"
+    else
+      sort_order = sort+" DESC"
+    end
+  end
+
+    @search = Customer.where(active: params[:active])
+    @search = @search.order(sort_order) if sort.present?
+       
     
-    @search = Customer.where(active: params[:active]).order('honorarios')    
     if (type_search == 'id_emp' || type_search == 'group_id')&& type_search.present?
       @search = @search.where(type_search+' =?',search).all 
     end
     @search = @search.where(type_search+" ILIKE ?", "%"+search+"%") if type_search != 'id_emp' && type_search != 'group_id' && type_search.present?
 
     @search = @search.order(:razao).search(params[:q])
+    @customers_report = @search.result    
     @customers = @search.result.paginate( :per_page => @per_page, :page => params[:page])
     @report_honorarios = @search.result.where('honorarios >0')
     @total = @customers.count

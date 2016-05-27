@@ -34,13 +34,15 @@ gem 'jquery-rails', '~> 2.3.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'maskmoney-rails'
-
+gem "font-awesome-rails"
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
 gem 'brazilian-rails'
 gem 'devise'
 gem 'prawn'
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
 gem 'rails-jquery-autocomplete'
 gem 'jquery-ui-rails'
 #gem 'responders', '~> 2.0'

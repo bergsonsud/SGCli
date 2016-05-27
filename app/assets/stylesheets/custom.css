@@ -99,3 +99,13 @@ footer ul li a {
 .ui-helper-hidden-accessible{
  display: none;
 }
+
+
+
+.report td {
+   padding-left: 15px ;
+}
+
+.fa-size{
+  font-size: 35em;
+}

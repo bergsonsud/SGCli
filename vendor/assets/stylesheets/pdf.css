@@ -1,0 +1,12 @@
+div.page {
+ /* width: 1300px;
+  height: 980px;*/
+  page-break-before: always;
+}
+
+p.breakhere {page-break-before: always}
+
+
+.report td {
+   padding-left: 15px ;
+}

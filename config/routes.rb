@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :customers do
     get :autocomplete_customer_razao, :on => :collection
     collection do
-      get 'report_honorarios'      
+      get 'report_honorarios'
+      get 'report'
+      get 'print_report'      
       get 'prepare_receipt'
       post 'prepare_receipt'
       post 'make_receipt'
