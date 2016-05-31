@@ -30,16 +30,17 @@ class CustomersController < ApplicationController
   end
 
   def print_report
-      #@customers = Customer.where(:active => true)
+      
       html = render_to_string(:action => 'show', :layout => false)
       kit = PDFKit.new(html, page_size: 'A4',:footer_center => DateTime.parse(Time.zone.now.to_s).strftime("%d/%m/%Y %H:%M"))
       `sass vendor/assets/stylesheets/bootstrap.scss tmp/bootstrap.css`
       `sass vendor/assets/stylesheets/custom.scss tmp/custom.css`
+      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
       kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/bootstrap.min.css"
       kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
-      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
+      
       pdf = kit.to_pdf
-      #send_data(pdf)
+      
       send_data pdf, :filename => Time.zone.today.to_s+'.pdf',
                 :type => "application/pdf",
                 :disposition  => "inline",
@@ -128,26 +129,28 @@ class CustomersController < ApplicationController
             aux = k % 2 == 0 ? 330 : 0
             pdf.bounding_box([0,730-aux], :width => 538, :height => 300) do #740 / 2
                 pdf.stroke_bounds   
-                pdf.text_box "FRANZÉ TELES CONTABILIDADE",:width => 538,:align => :center,:at => [0,285],:size => 28,:styles => :bold
+                pdf.text_box "FRANZÉ TELES CONTABILIDADE",:width => 538,:align => :center,:at => [0,285],:size => 28,:style => :bold
                 pdf.fill_color "848484" 
                 pdf.text_box "Rua 17, 51 Novo Oriente - Maracanaú-CE CEP 61.921-180 - (85) 98893-0581 / 3467-7074 / 3467-9952",
                 :width => 538,:align => :center,:at => [0,260],                      
-                :size => 9
+                :size => 10,
+                :style => :bold
+
                 pdf.fill_color "00000"                 
                 pdf.bounding_box([415,220], :width => 105, :height => 30) do #740 / 2
                     pdf.stroke_bounds 
-                    pdf.text_box "Nº "+count ,:at => [4,19]
+                    pdf.text_box "Nº "+count ,:at => [4,19],:style => :bold
                 end
 
                 #image water mark
-                pdf.transparent(0.3) do
-                    pdf.image "#{Rails.root}/app/assets/images/contabilidade.jpg",:at =>[145, 260],:scale => 0.60
+                pdf.transparent(0.35) do
+                    pdf.image "#{Rails.root}/app/assets/images/contabilidade.jpg",:at =>[145, 250],:scale => 0.60
                 end
                           
                 #body
-                pdf.text_box "RECIBO",:width => 538,:align => :center,:at => [0,205],:size => 18,:styles => :bold
-                pdf.text_box def_texto_recibo(c,valor,texto,total_setado),:width => 500,:align => :justify,:at => [18,165],:size => 10,:styles => :bold,:leading => 5
-                pdf.text_box "Maracanaú, ____/ ____/ ______",:at => [350,45],:size => 10,:styles => :bold
+                pdf.text_box "RECIBO",:width => 538,:align => :center,:at => [0,205],:size => 18,:style => :bold
+                pdf.text_box def_texto_recibo(c,valor,texto,total_setado),:width => 500,:align => :justify,:at => [18,165],:size => 10,:style => :bold,:leading => 5
+                pdf.text_box "Maracanaú, ____/ ____/ ______",:at => [350,45],:size => 10,:style => :bold
             
             end
               pdf.start_new_page if k<c_total && k%2 == 0

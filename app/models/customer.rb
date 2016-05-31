@@ -4,7 +4,7 @@ class Customer < ActiveRecord::Base
 	
 	validates :razao, presence: true, uniqueness: true,:case_sensitive => false
 	
-	validates :id_emp,:iss,:cgf,:cei,:cod,:logradouro,:numero,:bairro,:municipio,:estado,:telefone,:celular,:email,:contato,:group_id,:id_emp,presence: true
+	validates :id_emp,:iss,:cgf,:cod,:logradouro,:numero,:bairro,:municipio,:estado,:telefone,:celular,:email,:contato,:group_id,:id_emp,presence: true
 
 
 	validates :id_emp, numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 1..9 },if: 'id_emp.present?'
@@ -23,14 +23,6 @@ class Customer < ActiveRecord::Base
 
 	validates :contato, :length => { :minimum => 3},if: 'contato.present?'
 	validates :contato2, :length => { :minimum => 3},if: 'contato2.present?'
-
-	
-	# validates :municipio,:estado, presence: true
-	# validates :cnpj,:iss,presence: true
-	# validates :cnpj,{length: { is: 14 },uniqueness: true, numericality: true,if: 'cnpj.present?'}
-	# validates :iss,{length: { is: 14 },uniqueness: true, numericality: true,if: 'iss.present?'}
-
-
 
 
 	def address

@@ -6,39 +6,46 @@
 <br>
 <% end %>
 
-<table class="table table-bordered table-striped table-sm" style="width: 1000px;" >
+<table class="table table-bordered table-striped border-dark" style="width: 1000px;" >
 
-<th bgcolor="#E6E6E6" colspan="5">
+<th colspan="5">
 <table class="report">
   
   <tr>
-    <td colspan="4"><h3 class="section"><%= customer.razao %></h3></td>
+    <td colspan="4">
+      <label class="section big"><%= customer.razao %></label>
+    </td>
   </tr>
 
   <tr>
     <% if customer.id_emp.present? %>
       <td>
-        <h5 class="section">Código: <%= customer.id_emp %></h5>
+        <h5 class="section">
+          <label class="fields-show-view">Código: <%= customer.id_emp %></label>
+        </h5>
       </td>
     <% end %> 
     
       <td>
         <h5 class="section">
-          Grupo: <%= customer.group.name %>
+          <label class="fields-show-view">Grupo: <%= customer.group.name %></label>
         </h5>
       </td>
   
     <% if customer.desde.present? %>
       <td>
         <h5 class="section">
-          Cliente desde: <%= customer.since %> (<%= time_ago_in_words(customer.desde) %>)
+          <label class="fields-show-view">Cliente desde: <%= customer.since %> (<%= time_ago_in_words(customer.desde) %>)</label>
         </h5>
       </td>
     <% end %>
 
     <% if customer.honorarios.present? %>
     <td>
-      <h5 class="section">% Honorários: <%= number_to_percentage(customer.honorarios, precision: 3) %>
+      <h5 class="section">
+        <label class="fields-show-view">
+          % Honorários: <%= number_to_percentage(customer.honorarios, precision: 3) %>
+        </label>
       </h5>
     </td>
     <% end %>
@@ -51,7 +58,7 @@
 
 
 
-<th colspan="5">Endereço</th>
+<th class="th-field" colspan="5">Endereço</th>
 <tr>
   <td colspan="5">
     <% if customer.logradouro.present? or customer.municipio.present? %>
@@ -61,8 +68,8 @@
   </td>
 </tr>
 
-<th colspan="3">Contatos</th>
-<th colspan="2">Email</th>
+<th class="th-field" colspan="3">Contatos</th>
+<th class="th-field" colspan="2">Email</th>
 
 <tr>
 <td colspan="3">
@@ -87,7 +94,7 @@
 
 </tr>
 
-<th colspan="3">Endereço Coleta</th> 
+<th class="th-field" colspan="3">Endereço Coleta</th> 
 <th class="th-field" colspan="2">Código acesso</th>
 
 <tr>
@@ -108,7 +115,7 @@
 <th class="th-field">CNPJ</th>
 <th class="th-field">ISS</th>
 <th class="th-field">CGF</th>
-  <th class="th-field">CEI</th>
+<th class="th-field">CEI</th>
   <tr>
     <td>
       <label class="fields-show-view">        

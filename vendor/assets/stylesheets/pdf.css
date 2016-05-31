@@ -17,3 +17,7 @@ hr.style-three {
     background: #999;
     width: 1000px;
 }
+
+.table-bordered td, .table-bordered th{
+    border-color: black !important;
+}

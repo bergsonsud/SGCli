@@ -59,6 +59,9 @@ font-weight: bold;
 font-family: 'Yantramanav-Black', sans-serif;
 }
 
+.big{
+  font-size: 22px;
+}
 .section-title{
 font-family: 'Yantramanav-Black', sans-serif;
 font-size: 28px;
