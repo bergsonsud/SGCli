@@ -4,13 +4,13 @@ class Customer < ActiveRecord::Base
 	
 	validates :razao, presence: true, uniqueness: true,:case_sensitive => false
 	
-	validates :id_emp,:iss,:cgf,:cod,:logradouro,:numero,:bairro,:municipio,:estado,:telefone,:celular,:email,:contato,:group_id,:id_emp,presence: true
+	validates :id_emp,:cnpj,:cpf,:logradouro,:numero,:bairro,:municipio,:estado,:telefone,:celular,:email,:contato,:group_id,:id_emp,presence: true
 
 
 	validates :id_emp, numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 1..9 },if: 'id_emp.present?'
 	validates :iss, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },if: 'iss.present?'
 	validates :cnpj, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 14 },if: 'cnpj.present?'
-	validates :cpf, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 11 },if: 'cpf.present?'
+	validates :cpf, numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 11 },if: 'cpf.present?'
 	validates :cgf, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },if: 'cgf.present?'
 	validates :cei, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },length: { is: 12 },if: 'cei.present?'
 	validates :cod, uniqueness: true,numericality: true,format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ },:length => { :in => 1..30 },if: 'cod.present?'
