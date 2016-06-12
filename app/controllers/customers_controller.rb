@@ -53,7 +53,7 @@ class CustomersController < ApplicationController
   def report_honorarios
     @index = Setting.find_by_parametro("SGVRELHO").valor.gsub(',', '.').to_f
     @index = params[:index].to_f if params[:index].present?
-    @total = calc_total(@customers,@index)
+    @total = calc_total(@customers_report,@index)
   end
 
   def calc_total(customers,index)
