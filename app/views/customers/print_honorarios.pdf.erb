@@ -1,0 +1,66 @@
+
+<center><h1 class="section">Relatório de Honorários</h1>
+<h3 class="section"><%= Time.now.strftime("%d/%m/%Y %H:%M:%S") %></h3></center>
+
+  <style type="text/css">
+   table { page-break-inside:auto }
+   tr    { page-break-inside:avoid; page-break-after:auto }
+
+</style>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th><label class="section">Código</th>
+      <th><label class="section">Grupo</th>
+      <th><label class="section">Razão Social</th>
+      <th><label class="section">CPF</th>
+      <th><label class="section">CNPJ</label></th>      
+      <th><label class="section">% Honorários</label></th>
+      <th><label class="section">Valor</label></th>
+    </tr>
+    </thead>
+<tbody id="customers">
+<% x = 0 %>
+<% @report_honorarios.each do |customer| %>
+
+<tr id="customer_<%= customer.id %>">
+  <td><label class="fields-show-view"><%= customer.id_emp %></label></td>
+  <td><label class="fields-show-view"><%= customer.group.name %></label></td> 
+  <td><label class="fields-show-view"><%= customer.razao %></label></td>
+  <td><label class="fields-show-view"><%= customer.cpf %></label></td>  
+  <td><label class="fields-show-view"><%= customer.get_cnpj %></label></td>
+  
+  
+      <td>  
+      <label class="fields-show-view">
+        <%= number_to_percentage(customer.honorarios, precision: 3) if customer.honorarios.present? %>
+      </label>
+    </td>
+ 
+  
+    
+    <td>
+    <label class="fields-show-view">      
+      <%= number_to_currency (customer.calc_honorarios(params[:index].to_f))%>
+    </label>
+    </td>
+    
+    
+  
+</tr>
+
+
+<% end %>
+    </tbody>
+    <tbody>
+      <th colspan="7"></th>      
+    </tbody>
+    <tbody>
+      <th colspan="6">TOTAL</th>      
+      <th><strong><%= number_to_currency (params[:total]) %></strong></th>      
+    </tbody>
+  </table>
+
+    
+

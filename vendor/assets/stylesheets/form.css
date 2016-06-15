@@ -24,20 +24,20 @@
 
 
 .field{
-color: #6E6E6E;
+color: #000;
 display: block;
 font-family: 'Yantramanav-Light', sans-serif;
 font-size: 14px;
 }
 
 .fields-show-view{
-color: #6E6E6E;
+color: #000;
 font-family: 'Yantramanav', sans-serif;
 font-size: 16px;
 }
 
 .fields-show-button{
-color: #6E6E6E;
+color: #000;
 font-family: 'Yantramanav-Light', sans-serif;
 font-size: 14.5px;
 }
@@ -57,6 +57,8 @@ font-weight: bold;
 
 .section{
 font-family: 'Yantramanav-Black', sans-serif;
+color: #000;
+font-weight: bold;
 }
 
 .big{

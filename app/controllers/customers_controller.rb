@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController  
   before_action :set_customer, only: [:show, :edit, :update, :destroy, :switch]
-  before_action :prepare_customers, only: [:index, :report_honorarios,:report,:print_report]
+  before_action :prepare_customers, only: [:index, :report_honorarios,:report,:print_report,:print_report_honorarios]
   before_action :verify_user_admin, only: [:report_honorarios,:receipt]  
 
 
@@ -31,14 +31,28 @@ class CustomersController < ApplicationController
 
   def print_report
       
-      html = render_to_string(:action => 'show', :layout => false)
-      kit = PDFKit.new(html, page_size: 'A4',:footer_center => DateTime.parse(Time.zone.now.to_s).strftime("%d/%m/%Y %H:%M"))
-      `sass vendor/assets/stylesheets/bootstrap.scss tmp/bootstrap.css`
-      `sass vendor/assets/stylesheets/custom.scss tmp/custom.css`
-      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
-      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/bootstrap.min.css"
-      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
+     html = render_to_string(:action => 'show', :layout => false)
+     kit = PDFKit.new(html)
+     kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
+     kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
+     kit.stylesheets << "#{Rails.root}/vendor/assets/bootstrap.css"
+     
+      pdf = kit.to_pdf
       
+      send_data pdf, :filename => Time.zone.today.to_s+'.pdf',
+                :type => "application/pdf",
+                :disposition  => "inline",
+                :data => @customers
+  end
+
+  def print_report_honorarios
+      
+      html = render_to_string(:action => 'print_honorarios', :layout => false)
+      kit = PDFKit.new(html)
+     kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
+     kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
+     kit.stylesheets << "#{Rails.root}/vendor/assets/bootstrap.css"
+     
       pdf = kit.to_pdf
       
       send_data pdf, :filename => Time.zone.today.to_s+'.pdf',
@@ -130,7 +144,7 @@ class CustomersController < ApplicationController
             pdf.bounding_box([0,730-aux], :width => 538, :height => 300) do #740 / 2
                 pdf.stroke_bounds   
                 pdf.text_box "FRANZÉ TELES CONTABILIDADE",:width => 538,:align => :center,:at => [0,285],:size => 28,:style => :bold
-                pdf.fill_color "848484" 
+                pdf.fill_color "00000" 
                 pdf.text_box "Rua 17, 51 Novo Oriente - Maracanaú-CE CEP 61.921-180 - (85) 98893-0581 / 3467-7074 / 3467-9952",
                 :width => 538,:align => :center,:at => [0,260],                      
                 :size => 10,
@@ -143,7 +157,7 @@ class CustomersController < ApplicationController
                 end
 
                 #image water mark
-                pdf.transparent(0.35) do
+                pdf.transparent(0.6) do
                     pdf.image "#{Rails.root}/app/assets/images/contabilidade.jpg",:at =>[145, 250],:scale => 0.60
                 end
                           
@@ -262,6 +276,7 @@ class CustomersController < ApplicationController
 
     @search = Customer.where(active: params[:active])
     @search = @search.order(sort_order) if sort.present?
+    @search = @search.order(:id_emp) if !sort.present?
        
     
     if (type_search == 'id_emp' || type_search == 'group_id')&& type_search.present?

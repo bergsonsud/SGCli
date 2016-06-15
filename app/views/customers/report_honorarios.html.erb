@@ -16,6 +16,11 @@
     </div>
   </div>
 </div>
+<div class="pull-right">
+<%= link_to print_report_honorarios_customers_path(:format => :pdf,:total => @total,:index => @index,:active => params[:active],:type_search => params[:type_search],:search => params[:search],:sort => params[:sort],:order => params[:order],),:alt => 'Gerar Relatório em PDF', :target => '_blank' do %>
+  <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
+<% end %>
+</div>
 <strong>Indexador <%= number_to_currency @index %></strong><br>
 
   <table class="table table-bordered table-striped">

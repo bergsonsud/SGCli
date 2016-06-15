@@ -1,4 +1,5 @@
 class Customer < ActiveRecord::Base
+	include ActionView::Helpers::DateHelper
 	belongs_to :group
 	self.per_page = 5	
 	
@@ -63,15 +64,41 @@ class Customer < ActiveRecord::Base
 	end	
 
 	def mail
-		"#{email} #{email2}"		
+		if email.present? and email2.present?
+			"#{email} / #{email2}"
+		else		
+			"#{email} #{email2}"		
+		end
 	end
 
 	def since
 		"#{desde.strftime("%d/%m/%Y")}"
 	end
 
+	def howtime
+		if desde.present?
+			diff = Time.diff(desde.to_date, Time.now.to_date,'%y, %M, %w e %d')
+			
+			if diff[:day]==0 and diff[:month]==0 and diff[:year]==0 
+				time_ago_in_words(desde)
+			elsif diff[:day]<=6 and diff[:month]==0 and diff[:year]==0 
+				Time.diff(desde.to_date, Time.now.to_date,'%d')[:diff]											
+			elsif diff[:day]==0 and diff[:month]>=1 and diff[:year]==0
+				Time.diff(desde.to_date, Time.now.to_date,'%M')[:diff]											
+			elsif diff[:day]==0 and diff[:month]==0 and diff[:year]>=1
+				Time.diff(desde.to_date, Time.now.to_date,'%y')[:diff]															
+			else				
+				Time.diff(desde.to_date, Time.now.to_date,'%y, %M e %d')[:diff]
+			end
+		end
+	end
+
 	def get_cnpj
 		cnpj.sub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "\\1.\\2.\\3/\\4-\\5") if cnpj.present?# ==> 69.103.604/0001-60
+	end
+
+	def calc_honorarios(index)
+		(honorarios.to_f/100) * index
 	end
 
 	

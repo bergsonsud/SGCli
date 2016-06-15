@@ -20,6 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 pt-BR:
+  day: "dia"
+  days: "dias"
+  week: "semana"
+  weeks: "semanas"
+  month: "mês"
+  months: "meses"
+  year: "ano"
+  years: "anos"
   devise:
       confirmations:
         confirmed: "Sua conta foi confirmada com sucesso."
