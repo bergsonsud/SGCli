@@ -3,11 +3,12 @@
 <%= form_for '',:html => {:target=>'new_section_frame'}, :url => receipt_customers_path(format: :pdf), :method => :post do |f| %>
 
  <div class="row">
-	<div class="col-md-5">    
+	<div class="col-md-7">    
 	 <label class="field">Filtro</label>
 	<%= radio_button_tag("tipo", "Todos",checked = true, options = {} ) %> Todos	 
 	<%= radio_button_tag("tipo", "Grupo", ) %> Grupo 	
 	<%= radio_button_tag("tipo", "Individual", ) %>	Individual	
+	<%= radio_button_tag("tipo", "Individual_id", ) %>	Individual por Código Cliente	
 	</div>
 </div>
 <br>
@@ -24,6 +25,7 @@
  <div id="groups"></div>
 
  <div id="one"></div><br>
+ <div id="one_id"></div><br>
 
 
  <div class="row">

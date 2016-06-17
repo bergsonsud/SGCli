@@ -11,8 +11,7 @@
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
-      <th><label class="section">Código</th>
-      <th><label class="section">Grupo</th>
+      <th><label class="section">Código</th>      
       <th><label class="section">Razão Social</th>
       <th><label class="section">CPF</th>
       <th><label class="section">CNPJ</label></th>      
@@ -25,15 +24,14 @@
 <% @report_honorarios.each do |customer| %>
 
 <tr id="customer_<%= customer.id %>">
-  <td><label class="fields-show-view"><%= customer.id_emp %></label></td>
-  <td><label class="fields-show-view"><%= customer.group.name %></label></td> 
-  <td><label class="fields-show-view"><%= customer.razao %></label></td>
-  <td><label class="fields-show-view"><%= customer.cpf %></label></td>  
-  <td><label class="fields-show-view"><%= customer.get_cnpj %></label></td>
+  <td><label class="fields-show-view-report"><%= customer.id_emp %></label></td>  
+  <td><label class="fields-show-view-report"><%= customer.razao %></label></td>
+  <td><label class="fields-show-view-report"><%= customer.cpf %></label></td>  
+  <td><label class="fields-show-view-report"><%= customer.cnpj %></label></td>
   
   
       <td>  
-      <label class="fields-show-view">
+      <label class="fields-show-view-report">
         <%= number_to_percentage(customer.honorarios, precision: 3) if customer.honorarios.present? %>
       </label>
     </td>
@@ -41,7 +39,7 @@
   
     
     <td>
-    <label class="fields-show-view">      
+    <label class="fields-show-view-report">      
       <%= number_to_currency (customer.calc_honorarios(params[:index].to_f))%>
     </label>
     </td>
@@ -54,10 +52,10 @@
 <% end %>
     </tbody>
     <tbody>
-      <th colspan="7"></th>      
+      <th colspan="6"></th>      
     </tbody>
     <tbody>
-      <th colspan="6">TOTAL</th>      
+      <th colspan="5">TOTAL</th>      
       <th><strong><%= number_to_currency (params[:total]) %></strong></th>      
     </tbody>
   </table>

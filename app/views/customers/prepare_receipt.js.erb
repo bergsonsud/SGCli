@@ -6,17 +6,26 @@ $('#dialog').modal("show");
 document.getElementById("tipo_Grupo").onclick = function() {
 	$('#groups').html('<%= j render("composer/receipt/groups") %>');
 	$('#one').html('');
+	$('#one_id').html('');
 };
 
 
 document.getElementById("tipo_Todos").onclick = function() {
 	$('#groups').html('');
 	$('#one').html('');
+	$('#one_id').html('');
 };
 
 document.getElementById("tipo_Individual").onclick = function() {
 	$('#groups').html('');
+	$('#one_id').html('');
 	$('#one').html('<%= j render("composer/receipt/one") %>');
+};
+
+document.getElementById("tipo_Individual_id").onclick = function() {
+	$('#groups').html('');
+	$('#one').html('');
+	$('#one_id').html('<%= j render("composer/receipt/one_id") %>');
 };
 
 

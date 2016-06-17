@@ -95,7 +95,8 @@ class CustomersController < ApplicationController
    def receipt    
     valor = Setting.find_by_parametro("SGVRELHO").valor.gsub(',', '.').to_f
     tipo = params[:tipo]    
-    individual = params[:individual]
+    individual = params[:individual] if params[:individual].present?
+
     ordem = params[:ordem]
     total_setado = params[:total]
 
@@ -107,6 +108,7 @@ class CustomersController < ApplicationController
       customers = Customer.where('active = true and honorarios>0 and group_id = ?',params[:group][:group_id]).order(ordem)
     else
       customers = Customer.where('id =?',individual).order(ordem)
+      customers = Customer.where('id_emp =?',params[:id_emp]).order(ordem) if params[:id_emp].present?
     end     
     
       respond_to do |format|        

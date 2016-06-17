@@ -36,12 +36,23 @@ font-family: 'Yantramanav', sans-serif;
 font-size: 16px;
 }
 
+.fields-show-view-report{
+color: #000;
+font-family: 'Yantramanav', sans-serif;
+font-size: 10px;
+}
+
 .fields-show-button{
 color: #000;
 font-family: 'Yantramanav-Light', sans-serif;
 font-size: 14.5px;
 }
 
+.fields-show-button{
+color: #000;
+font-family: 'Yantramanav-Light', sans-serif;
+font-size: 14.5px;
+}
 
 .th-field{
 font-family: 'Yantramanav-Black', sans-serif;
@@ -56,6 +67,12 @@ font-weight: bold;
 }
 
 .section{
+font-family: 'Yantramanav-Black', sans-serif;
+color: #000;
+font-weight: bold;
+}
+
+.section-report{
 font-family: 'Yantramanav-Black', sans-serif;
 color: #000;
 font-weight: bold;
