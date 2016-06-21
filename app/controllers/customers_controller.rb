@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController  
   before_action :set_customer, only: [:show, :edit, :update, :destroy, :switch]
-  before_action :prepare_customers, only: [:index, :report_honorarios,:report,:print_report,:print_report_honorarios]
+  before_action :prepare_customers, only: [:index, :report_honorarios,:report,:print_report,:print_report_honorarios,:print]
   before_action :verify_user_admin, only: [:report_honorarios,:receipt]  
 
 
@@ -29,6 +29,22 @@ class CustomersController < ApplicationController
 
   end
 
+  def print
+      
+     html = render_to_string(:action => 'print', :layout => false)
+     kit = PDFKit.new(html)
+     kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
+     kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
+     kit.stylesheets << "#{Rails.root}/vendor/assets/bootstrap.css"
+     
+      pdf = kit.to_pdf
+      
+      send_data pdf, :filename => Time.zone.today.to_s+'.pdf',
+                :type => "application/pdf",
+                :disposition  => "inline",
+                :data => @customers
+  end
+
   def print_report
       
      html = render_to_string(:action => 'show', :layout => false)
@@ -47,8 +63,8 @@ class CustomersController < ApplicationController
 
   def print_report_honorarios
       
-      html = render_to_string(:action => 'print_honorarios', :layout => false)
-      kit = PDFKit.new(html)
+     html = render_to_string(:action => 'print_honorarios', :layout => false)
+     kit = PDFKit.new(html)
      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
      kit.stylesheets << "#{Rails.root}/vendor/assets/bootstrap.css"

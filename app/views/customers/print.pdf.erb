@@ -1,0 +1,58 @@
+  <style type="text/css">
+   table { page-break-inside:auto }
+   tr    { page-break-inside:avoid; page-break-after:auto }
+
+</style>
+
+<table class="table table-bordered table-striped border-dark" style="width: 1000px;" >
+<th class="th-field">Código</th>
+<th class="th-field">Razão Social</th>
+<th class="th-field">CNPJ</th>
+<th class="th-field">CGF</th>
+<th class="th-field">CPF</th>
+<th class="th-field">Código Acesso</th>
+
+<% @customers_report.each do |customer| %>
+<tr>
+
+  <td>    
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view"><%= customer.id_emp %></label>    
+  </td>
+
+  <td>    
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view"><%= customer.razao %></label>    
+  </td>
+
+  <td>
+    <% if customer.cnpj.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view"><%= customer.cnpj %></label>
+    <% end %>
+  </td>
+
+  <td>
+    <% if customer.cgf.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view"><%= customer.cgf %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.cpf.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view"><%= customer.cpf %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.cod.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view"><%= customer.cod %></label>
+    <% end %>
+  </td>
+
+  </tr>
+<% end %>
+</table>

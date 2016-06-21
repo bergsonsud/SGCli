@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get 'report'
       get 'print_report'      
       get 'print_report_honorarios'      
+      get 'print'
       get 'prepare_receipt'
       post 'prepare_receipt'
       post 'make_receipt'
