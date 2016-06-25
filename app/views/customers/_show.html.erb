@@ -46,50 +46,42 @@
 
 <table class="table table-bordered table-striped table-sm">
 	
-<% if current_user.admin? %>
-	<th class="th-field" colspan="2">Código acesso</th>
+	<th class="th-field">Regime SRF</th>
+	<th class="th-field" colspan="2">Regime SEFAZ</th>
+	<th class="th-field">Orgão</th>	
 	<tr>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.srf if @customer.srf.present? %>
+			</label>
+		</td>
 		<td colspan="2">
 			<label class="fields-show-view">
-				<%= @customer.cod if @customer.cod.present? %>
+				<%= @customer.sefaz if @customer.sefaz.present? %>
 			</label>
-		</td>
-	</tr>
-	<th class="th-field">% honorários</th>
-	<th class="th-field">CPF</th>
-	<tr>
+		</td>		
 		<td>
 			<label class="fields-show-view">
-				<%= number_to_percentage(@customer.honorarios, precision: 3) if @customer.honorarios.present? %>
-			</label>
-		</td>
-		<td>
-			<label class="fields-show-view">				
-				<%= @customer.cpf if @customer.cpf.present? %>
+				<%= @customer.orgao if @customer.orgao.present? %>
 			</label>
 		</td>
 	</tr>
 
-<% else %>
-
-	<th class="th-field">Código acesso</th>	
 	<th class="th-field">CPF</th>
-	<tr>
-		<td>
-			<label class="fields-show-view">
-				<%= @customer.cod if @customer.cod.present? %>
-			</label>
-		</td>
-		<td>
-			<label class="fields-show-view">				
-				<%= @customer.cpf if @customer.cpf.present? %>
-			</label>
-		</td>
-	</tr>
-<% end %>	
+	<th class="th-field">e-CPF</th>
 	<th class="th-field">CNPJ</th>
-	<th class="th-field">ISS</th>
+	<th class="th-field">e-CNPJ</th>
 	<tr>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.cpf if @customer.cpf.present? %>
+			</label>
+		</td>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.e_cpf if @customer.e_cpf.present? %>
+			</label>
+		</td>
 		<td>
 			<label class="fields-show-view">
 				<%= @customer.get_cnpj%>
@@ -97,12 +89,15 @@
 		</td>
 		<td>
 			<label class="fields-show-view">
-				<%= @customer.iss if @customer.iss.present? %>
+				<%= @customer.e_cnpj if @customer.e_cnpj.present? %>
 			</label>
 		</td>
-	</tr>
+	</tr>	
+
 	<th class="th-field">CGF</th>
 	<th class="th-field">CEI</th>
+	<th class="th-field">ISS</th>	
+	<th class="th-field">Senha ISS</th>	
 	<tr>
 		<td>
 			<label class="fields-show-view">
@@ -113,8 +108,46 @@
 			<label class="fields-show-view">
 				<%= @customer.cei if @customer.cei.present? %>
 			</label>
-		</td>			
+		</td>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.iss if @customer.iss.present? %>
+			</label>
+		</td>
+		<td colspan="3">
+			<label class="fields-show-view">
+				<%= @customer.senha_iss if @customer.senha_iss.present? %>
+			</label>
+		</td>
+	</tr>	
+
+<% if current_user.admin? %>
+	<th class="th-field" colspan="3">Código acesso</th>
+	<th class="th-field">% honorários</th>	
+	<tr>
+		<td colspan="3">
+			<label class="fields-show-view">
+				<%= @customer.cod if @customer.cod.present? %>
+			</label>
+		</td>	
+		<td>
+			<label class="fields-show-view">
+				<%= number_to_percentage(@customer.honorarios, precision: 3) if @customer.honorarios.present? %>
+			</label>
+		</td>		
 	</tr>
+
+<% else %>
+
+	<th class="th-field">Código acesso</th>		
+	<tr>
+		<td>
+			<label class="fields-show-view">
+				<%= @customer.cod if @customer.cod.present? %>
+			</label>
+		</td>		
+	</tr>
+<% end %>	
 </table>
 
 <br>

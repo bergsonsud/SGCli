@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController  
   before_action :set_customer, only: [:show, :edit, :update, :destroy, :switch]
-  before_action :prepare_customers, only: [:index, :report_honorarios,:report,:print_report,:print_report_honorarios,:print]
+  before_action :prepare_customers, only: [:index, :report_honorarios,:report,:print_report,:print_report_honorarios,:print,:print_codigo]
   before_action :verify_user_admin, only: [:report_honorarios,:receipt]  
 
 
@@ -32,7 +32,23 @@ class CustomersController < ApplicationController
   def print
       
      html = render_to_string(:action => 'print', :layout => false)
-     kit = PDFKit.new(html)
+     kit = PDFKit.new(html, :orientation => 'Landscape')
+     kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
+     kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
+     kit.stylesheets << "#{Rails.root}/vendor/assets/bootstrap.css"
+     
+      pdf = kit.to_pdf
+      
+      send_data pdf, :filename => Time.zone.today.to_s+'.pdf',
+                :type => "application/pdf",
+                :disposition  => "inline",
+                :data => @customers
+  end
+
+  def print_codigo
+      
+     html = render_to_string(:action => 'print_codigo', :layout => false)
+     kit = PDFKit.new(html, :orientation => 'Landscape')
      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/form.css"
      kit.stylesheets << "#{Rails.root}/vendor/assets/stylesheets/pdf.css"
      kit.stylesheets << "#{Rails.root}/vendor/assets/bootstrap.css"
@@ -260,7 +276,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:id_emp,:razao, :iss, :cnpj, :cpf, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde, :active,:group_id,:cep)
+      params.require(:customer).permit(:id_emp,:razao, :iss, :e_cnpj, :cnpj, :cpf, :e_cpf, :cei, :cgf, :cod, :logradouro, :numero, :bairro, :complemento, :municipio, :estado, :telefone, :telefone2, :telefone3, :celular, :celular2, :email, :email2, :contato, :contato2, :endereco_coleta, :honorarios, :desde, :active,:group_id,:cep, :srf, :sefaz, :senha_iss, :orgao)
     end
 
     def valid_params?

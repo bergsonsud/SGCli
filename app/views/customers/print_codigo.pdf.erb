@@ -1,18 +1,25 @@
   <style type="text/css">
    table { page-break-inside:auto }
    tr    { page-break-inside:avoid; page-break-after:auto }
+  .container, .new-section, .new-section table.fixed{
+    width: 100%;
+}
 
 </style>
 
-<table class="table table-bordered table-striped border-dark" style="width: 1000px;" >
-<th class="th-field">Código</th>
-<th class="th-field">Razão Social</th>
-<th class="th-field">CPF</th>
-<th class="th-field">CNPJ</th>
-<th class="th-field">CGF</th>
-<th class="th-field">Regime SRF</th>
-<th class="th-field">Regime SEFAZ</th>
-<th class="th-field">Código Acesso</th>
+<table class="table table-bordered table-striped border-dark" >
+<th width="6.3%">#</th>
+<th width="30%">Razão Social</th>
+<th width="6.3%">CPF</th>
+<th width="6.3%">e-CPF</th>
+<th width="6.3%">CNPJ</th>
+<th width="6.3%">e-CNPJ</th>
+<th width="6.3%">CGF</th>
+<th width="6.3%">ISS</th>
+<th width="6.3%">Senha ISS</th>
+<th width="6.3%">Regime SRF</th>
+<th width="6.3%">Regime SEFAZ</th>
+<th width="6.3%">Código Acesso</th>
 
 <% @customers_report.each do |customer| %>
 <tr>
@@ -22,17 +29,21 @@
     <label class="fields-show-view small"><%= customer.id_emp %></label>    
   </td>
 
-  <td>    
-    <i class='glyphicon glyphicon-home'></i>
+  <td>        
     <label class="fields-show-view small"><%= customer.razao %></label>    
   </td>
 
   <td>
-    <% if customer.cpf.present?%>
-    <i class='glyphicon glyphicon-home'></i>
+    <% if customer.cpf.present?%>    
     <label class="fields-show-view small"><%= customer.cpf %></label>
     <% end %>
   </td> 
+
+  <td>
+    <% if customer.e_cpf.present?%>    
+    <label class="fields-show-view small"><%= customer.e_cpf %></label>
+    <% end %>
+  </td>   
 
   <td>
     <% if customer.cnpj.present?%>
@@ -42,9 +53,30 @@
   </td>
 
   <td>
+    <% if customer.e_cnpj.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.e_cnpj %></label>
+    <% end %>
+  </td> 
+
+  <td>
     <% if customer.cgf.present?%>
     <i class='glyphicon glyphicon-home'></i>
     <label class="fields-show-view small"><%= customer.cgf %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.iss.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.iss %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.senha_iss.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.senha_iss %></label>
     <% end %>
   </td> 
 

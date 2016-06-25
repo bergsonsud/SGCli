@@ -64,6 +64,11 @@
                   Relatório Clientes - Resumido <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
                 <% end %>
            </li>
+        <li>
+              <%= link_to print_codigo_customers_path(:format => :pdf,:active => params[:active]), :target => '_blank' do %>
+                  Relatório Código Acesso <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
+                <% end %>
+           </li>
           </ul>
         </li>
       </ul>  

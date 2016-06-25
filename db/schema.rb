@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525022028) do
+ActiveRecord::Schema.define(version: 20160625013631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,12 @@ ActiveRecord::Schema.define(version: 20160525022028) do
     t.string   "id_emp"
     t.string   "cep"
     t.string   "cpf"
+    t.string   "srf"
+    t.string   "sefaz"
+    t.string   "senha_iss"
+    t.string   "orgao"
+    t.string   "e_cpf"
+    t.string   "e_cnpj"
   end
 
   create_table "groups", force: :cascade do |t|

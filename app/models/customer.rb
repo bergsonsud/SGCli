@@ -1,7 +1,7 @@
 class Customer < ActiveRecord::Base
 	include ActionView::Helpers::DateHelper
 	belongs_to :group
-	self.per_page = 5	
+	self.per_page = 25	
 	
 	validates :razao, presence: true, uniqueness: true,:case_sensitive => false
 	
